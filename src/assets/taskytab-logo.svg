@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" width="113.451" height="105.821" viewBox="0 0 113.451 105.821">
+  <defs>
+    <filter id="Path_1" x="0" y="0" width="113.451" height="105.821" filterUnits="userSpaceOnUse">
+      <feOffset dx="-4" dy="-3" input="SourceAlpha"/>
+      <feGaussianBlur stdDeviation="5" result="blur"/>
+      <feFlood flood-opacity="0.161"/>
+      <feComposite operator="in" in2="blur"/>
+      <feComposite in="SourceGraphic"/>
+    </filter>
+  </defs>
+  <g id="taskytab-logo" transform="translate(-112.992 -96)">
+    <g transform="matrix(1, 0, 0, 1, 112.99, 96)" filter="url(#Path_1)">
+      <path id="Path_1-2" data-name="Path 1" d="M26.576,8.627a17.615,17.615,0,0,1,30.3,0L80.958,49.218a17.615,17.615,0,0,1-15.148,26.6H17.642a17.615,17.615,0,0,1-15.149-26.6Z" transform="translate(102.45 93.82) rotate(180)" fill="#fff"/>
+    </g>
+    <path id="ic_format_strikethrough_24px" d="M28.957,46.209V32.317H19.518ZM7.719,4v7.079h11.8v7.079h9.439V11.079h11.8V4ZM3,27.6H45.475V22.878H3Z" transform="translate(147.612 127.197)" fill="#0000e6"/>
+  </g>
+</svg>
