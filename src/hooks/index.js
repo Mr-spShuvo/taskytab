@@ -1,16 +1,23 @@
 import { useEffect, useState } from 'react';
 import moment from 'moment';
 
-import firebase from '../firebase';
+import { db } from '../firebase';
 import { collatedTasksExists } from '../helpers';
 
+/**
+ * @name useTasks
+ *  - Custom hook to return all tasks for Generic Tabs and Tabs
+ * @param selectedTab
+ * @returns {tasks, archivedTasks}
+ */
 export const useTasks = selectedTab => {
   const [tasks, setTasks] = useState([]);
   const [archiveTasks, setArchiveTasks] = useState([]);
 
+  //console.log(selectedTab);
   useEffect(() => {
     // Set filter on firebase User Data
-    let unsubscribe = firebase.firestore().collections('tasks').where('userID', '==', 'xlipTsb3Pd33p0kmqXSN');
+    let unsubscribe = db.collection('tasks').where('userId', '==', 'xlipTsb3Pd33p0kmqXSN');
 
     // Check on if any Tab Selected and if there is any tasks on the Tab
     if (selectedTab && !collatedTasksExists(selectedTab)) {
@@ -38,7 +45,7 @@ export const useTasks = selectedTab => {
         setTasks(
           newTasks.filter(task => {
             // Checking Tasks Date Less than 7 days and Tasks are not archived.
-            moment(task.date, 'DD/MM/YYYY').diff(moment(), 'days') <= 7 && task.archive !== true;
+            return moment(task.date, 'DD/MM/YYYY').diff(moment(), 'days') <= 7 && task.archive !== true;
           })
         );
       } else setTasks(newTasks.filter(task => task.archive !== true));
@@ -46,17 +53,23 @@ export const useTasks = selectedTab => {
       // Update archiveTask List
       setArchiveTasks(newTasks.filter(task => task.archive !== false));
     });
+    return () => unsubscribe();
   }, [selectedTab]);
 
   return { tasks, archiveTasks };
 };
 
+/**
+ * @name useTabs
+ *  - Custom hook to return all the Tabs List
+ * @param ()
+ * @returns {tabs, setTabs}
+ */
 export const useTabs = () => {
   const [tabs, setTabs] = useState([]);
   useEffect(() => {
-    firebase
-      .firestore()
-      .collections('tabs')
+    // Retrieve Tab list and data
+    db.collection('tabs')
       .where('userID', '==', 'xlipTsb3Pd33p0kmqXSN')
       .orderBy('tabId')
       .get()
@@ -65,6 +78,7 @@ export const useTabs = () => {
           id: tab.id,
           ...tab.data()
         }));
+        // Checking if it already retrieve the data (Prevents infinite Loops)
         if (JSON.stringify(allTabs) !== JSON.stringify(tabs)) setTabs(allTabs);
       });
   }, [tabs]);

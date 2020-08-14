@@ -1,0 +1,12 @@
+.container {
+  width: 90%;
+  margin: 0 auto;
+
+  @include media-queries(atMedium) {
+    width: 75%;
+  }
+
+  @include media-queries(atLarge) {
+    width: 65%;
+  }
+}

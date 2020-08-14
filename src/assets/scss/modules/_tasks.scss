@@ -1,0 +1,9 @@
+.tasks {
+  background-color: $color-bg-light;
+  padding-left: 3rem;
+  height: 93vh;
+
+  &__list {
+    list-style: none;
+  }
+}

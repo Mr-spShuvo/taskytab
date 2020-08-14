@@ -1,0 +1,14 @@
+.content-area {
+  display: flex;
+  justify-content: space-between;
+  padding-top: 4.5rem;
+}
+
+.sidebar {
+  flex-basis: 20%;
+}
+
+.tasks {
+  flex-basis: 79%;
+  margin-left: auto;
+}

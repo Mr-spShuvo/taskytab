@@ -1,17 +1,12 @@
+/*eslint-disable */
 import React from 'react';
-import {
-  RiInboxLine,
-  RiCalendarLine,
-  RiCalendar2Line,
-  RiArrowDownSLine,
-  RiAddLine
-} from 'react-icons/ri';
+import { RiInboxLine, RiCalendarLine, RiCalendar2Line, RiArrowDownSLine, RiAddLine, RiRadioButtonLine } from 'react-icons/ri';
 
 export const Sidebar = () => {
   return (
     <div className="sidebar" data-testid="sidebar">
       <ul className="sidebar__generic">
-        <li className="sidebar__items">
+        <li className="sidebar__item">
           <a href="#" className="sidebar__link">
             <span className="sidebar__icon">
               <RiInboxLine />
@@ -19,7 +14,7 @@ export const Sidebar = () => {
             Inbox
           </a>
         </li>
-        <li className="sidebar__items">
+        <li className="sidebar__item">
           <a href="#" className="sidebar__link">
             <span className="sidebar__icon">
               <RiCalendarLine />
@@ -27,8 +22,8 @@ export const Sidebar = () => {
             Today
           </a>
         </li>
-        <li className="sidebar__items">
-          <a href="#" className="sidebar__link">
+        <li className="sidebar__item">
+          <a href="#" className="sidebar__link sidebar__link--active">
             <span className="sidebar__icon">
               <RiCalendar2Line />
             </span>
@@ -37,19 +32,41 @@ export const Sidebar = () => {
         </li>
       </ul>
       <div className="sidebar__divider">
-        <span className="sidebar__icon">
-          <RiArrowDownSLine />
-        </span>
-        Tasky Tab
-        <span className="sidebar__icon">
-          <RiAddLine />
-        </span>
+        <a href="#" className="sidebar__action">
+          <span className="sidebar__icon">
+            <RiArrowDownSLine />
+          </span>
+        </a>
+        <span className="sidebar__divider--title">Tabs List</span>
+        <a href="#" className="sidebar__action">
+          <span className="sidebar__icon">
+            <RiAddLine />
+          </span>
+        </a>
       </div>
       <ul className="sidebar__tabs">
-        <li className="sidebar__items">
+        <li className="sidebar__item">
           <a href="#" className="sidebar__link">
-            <span className="sidebar__icon"></span>
+            <span className="sidebar__icon">
+              <RiRadioButtonLine fill="tomato" />
+            </span>
             Coding
+          </a>
+        </li>
+        <li className="sidebar__item">
+          <a href="#" className="sidebar__link sidebar__link--active">
+            <span className="sidebar__icon">
+              <RiRadioButtonLine fill="teal" />
+            </span>
+            Design
+          </a>
+        </li>
+        <li className="sidebar__item">
+          <a href="#" className="sidebar__link">
+            <span className="sidebar__icon">
+              <RiRadioButtonLine fill="olive" />
+            </span>
+            Cooking
           </a>
         </li>
       </ul>

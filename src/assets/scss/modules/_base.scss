@@ -1,0 +1,33 @@
+@import url($font-url);
+
+// General Settings
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-weight: $font-regular;
+  line-height: 1;
+  font-family: 'Be Vietnam', sans-serif;
+  color: $color-text;
+  background-color: $color-bg;
+  font-smooth: always;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-size: 1.3rem;
+}
+
+ul {
+  margin: 0;
+  padding: 0;
+}
