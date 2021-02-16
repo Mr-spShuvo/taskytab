@@ -1,18 +1,11 @@
 import React from 'react';
-import { Checkbox } from '../common/Checkbox';
-import { useTasks, useTabs } from '../../hooks';
+import { Checkbox } from './common/Checkbox';
 
 export const Tasks = () => {
-  const { tasks } = useTasks('1');
-  const [tabs] = useTabs();
-
+  const tasks = [];
   return (
     <div className="tasks" data-testid="tasks">
-      <h2 data-testid="tab-name">
-        {tabs.map(item => (
-          <span key={item.tabId}>{item.name}</span>
-        ))}
-      </h2>
+      <h2 data-testid="tab-name">Cooking</h2>
       <ul className="tasks__list">
         {tasks.map(task => (
           <li key={task.id}>

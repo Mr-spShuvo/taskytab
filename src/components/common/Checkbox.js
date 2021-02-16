@@ -1,9 +1,8 @@
-/*eslint-disable */
 import React from 'react';
 
 import { db } from '../../firebase';
 
-export const Checkbox = id => {
+export const Checkbox = ({ id }) => {
   const archiveTask = () => {
     db.collection('tasks').doc(id).update({
       archive: true
@@ -11,8 +10,8 @@ export const Checkbox = id => {
   };
 
   return (
-    <div className="checkbox-holder" data-testid="checkbox-action" onClick={() => archiveTask()} onBlur={() => archiveTask()}>
+    <button className="checkbox-holder" data-testid="checkbox-action" onClick={archiveTask} onBlur={archiveTask}>
       <span className="checkbox" />
-    </div>
+    </button>
   );
 };

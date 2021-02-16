@@ -4,11 +4,9 @@ import { Tasks } from './Tasks';
 
 export const Content = () => {
   return (
-    <div className="container">
-      <div className="content-area">
-        <Sidebar />
-        <Tasks />
-      </div>
+    <div className="content-area">
+      <Sidebar />
+      <Tasks />
     </div>
   );
 };

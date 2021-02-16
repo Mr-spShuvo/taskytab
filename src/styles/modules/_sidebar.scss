@@ -1,58 +1,28 @@
 .sidebar {
-  background-color: $color-bg;
-  border-right: 2px solid $color-light;
-  box-shadow: 1px 3px 5px rgba($color-dark, 0.01);
   position: fixed;
-  width: 13.5%;
+  width: 20%;
+  padding-right: 2.5rem;
+  padding-left: 5%;
+  left: 0;
   top: 0;
   bottom: 0;
-  font-weight: $font-medium;
+  font-weight: $font-bold;
   font-size: 1.3rem;
-  margin-right: 1rem;
   overflow-y: auto;
   overflow-x: hidden;
   z-index: 11;
 
   &__generic {
-    margin-top: 5rem;
+    margin-top: 5.8rem;
   }
 
-  &__tabs {
-    .sidebar__icon {
-      & > svg {
-        position: relative;
-        top: 1px;
-        width: 1.1rem;
-        height: 1.1rem;
-      }
+  &__icon {
+    margin-right: 1.5rem;
+    & > svg {
+      width: 2rem;
+      height: 2rem;
+      fill: $color-gray;
     }
-  }
-
-  &__generic,
-  &__tabs {
-    list-style: none;
-  }
-
-  &__divider {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-right: 1rem;
-    margin-top: 2rem;
-    padding-bottom: 0.75rem;
-    border-bottom: 1px solid $color-light;
-    &--title {
-      font-weight: $font-bold;
-      font-size: 1.3rem;
-      letter-spacing: 0.5px;
-      position: relative;
-      top: -3px;
-      color: $color-main;
-    }
-  }
-
-  &__item {
-    margin-bottom: 0.5rem;
   }
 
   &__link {
@@ -61,48 +31,84 @@
     color: $color-text;
     display: inline-block;
     width: 100%;
-    padding: 0.8rem;
-    padding-bottom: 1.4rem;
+    margin-top: 2rem;
     transition: all 0.3s ease;
+    padding: 0.8rem 1.5rem;
 
-    &:hover {
-      padding-left: 2rem;
-      background-color: $color-bg-light;
+    &-text {
+      position: relative;
+      bottom: 5px;
     }
 
-    &--active {
-      padding-left: 2rem;
-      background-color: $color-bg-light;
+    &:hover,
+    &.active {
       color: $color-main;
+      background-color: $color-bg;
+
+      border-radius: 0.5rem;
+      svg {
+        fill: $color-main;
+      }
     }
   }
 
-  &__icon {
-    margin-right: 1rem;
-    & > svg {
-      position: relative;
-      top: 3px;
-      width: 1.6rem;
-      height: 1.6rem;
+  &__divider {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    border-bottom: 1px solid $color-light;
+    margin-top: 2rem;
+
+    .sidebar__link {
+      cursor: unset;
+      margin-top: 0;
+
+      &:hover {
+        color: $color-text;
+        background-color: transparent;
+        border-radius: 0;
+        svg {
+          fill: $color-gray;
+        }
+      }
     }
   }
 
   &__action {
-    padding: 0.5rem;
+    cursor: pointer;
     display: inline-block;
-    border-radius: 3px;
+    padding: 0;
+    margin: 0;
+    border: none;
+    outline: none;
+    background-color: transparent;
     transition: background-color 0.3s ease;
 
-    &:hover {
-      background-color: $color-light;
+    .sidebar__icon {
+      margin-right: 0;
     }
+  }
 
-    svg {
-      position: relative;
-      left: 50%;
-      top: 0%;
-      fill: $color-text;
-      transform: translate(-50%);
+  &__generic,
+  &__tabs {
+    list-style: none;
+  }
+
+  &__tabs {
+    margin-top: 0.8rem;
+    margin-left: 1.5rem;
+    .sidebar__link {
+      margin-top: 0.8rem;
+      &-text {
+        position: relative;
+        bottom: 2.5px;
+      }
+      .sidebar__icon {
+        & > svg {
+          width: 1.5rem;
+          height: 1.5rem;
+        }
+      }
     }
   }
 }

@@ -1,4 +1,4 @@
-import { collatedTasks } from '../constants';
+import { collatedTasks } from '../config';
 
 export const isCollatedTasksExists = selectedTab => {
   collatedTasks.find(task => task.tabId === selectedTab);

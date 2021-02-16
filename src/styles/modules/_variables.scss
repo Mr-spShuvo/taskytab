@@ -4,22 +4,25 @@ $generic-bg: #0000e6;
 
 /* Colors */
 $color-main: #0000e6;
+$color-main-light: #b1b1ff;
 $color-dark: #111;
-$color-text: #444;
+$color-text: #666;
 $color-gray: #999;
 $color-light: #e1e1e1;
 $color-bg: #f1f0ff;
-$color-bg-light: #f7f7f9;
+$color-bg-light: #f5f6fa;
 $color-white: #fff;
 
 /*Utilities variables*/
 $box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 4px 11px;
 $generic-border: 1px s7lid #f1f1f1;
 
-$font-url: 'https://fonts.googleapis.com/css2?family=Be+Vietnam:wght@500;600;700&display=swap';
-$font-regular: 500;
-$font-medium: 600;
-$font-bold: 700;
+$font-url: 'https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap';
+$font-family: 'Quicksand', Arial, Helvetica, san-serif;
+$font-regular: 400;
+$font-medium: 500;
+$font-bold: 600;
+$font-bolder: 700;
 
 /* Dark Modes */
 body#darkmode {

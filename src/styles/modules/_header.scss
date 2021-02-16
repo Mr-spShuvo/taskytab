@@ -4,21 +4,25 @@
   z-index: 111;
   position: fixed;
   width: 100%;
-  padding: 0;
   border-bottom: solid 2px darken($color-main, 5%);
 
   &__nav {
     display: flex;
     justify-content: space-between;
     align-items: center;
+  }
+
+  &__left {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
     .logo {
-      & > a {
-        text-decoration: none;
-        display: flex;
-        align-items: center;
-        color: $color-white;
-      }
+      margin-right: 11rem;
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      color: $color-white;
 
       img {
         height: 3.2rem;
@@ -26,29 +30,69 @@
       }
 
       &__text {
-        font-size: 1.6rem;
-        font-weight: $font-medium;
+        font-size: 1.8rem;
+        font-weight: $font-bolder;
+        letter-spacing: 0.3px;
       }
     }
 
+    .search {
+      display: flex;
+      align-items: center;
+      width: 28rem;
+      padding: 0.5rem 1.5rem;
+      border-radius: 5rem;
+      background-color: darken($color-main-light, 20%);
+
+      & > svg {
+        display: inline-block;
+        width: 2rem;
+        height: 2rem;
+        fill: $color-main-light;
+      }
+
+      input {
+        display: block;
+        margin-left: 1rem;
+        background-color: transparent;
+        border: none;
+        outline: none;
+        color: $color-bg;
+
+        &::placeholder {
+          color: $color-main-light;
+        }
+      }
+    }
+  }
+
+  &__right {
     .options {
       display: flex;
-      justify-content: end;
+      justify-content: flex-end;
       align-items: center;
       list-style: none;
 
       &__item {
         backface-visibility: hidden;
 
+        &.active {
+          & > a > svg {
+            fill: $color-white;
+          }
+        }
+
         & > a {
           display: inline-block;
           border-radius: 3px;
           display: inline-block;
-          transition: background-color 3s ease;
-          padding: 0.5rem;
+          transition: background-color 0.3s ease;
 
-          &:hover {
-            background-color: darken($color-main, 8%);
+          &:hover,
+          .active {
+            & > svg {
+              fill: $color-white;
+            }
           }
         }
 
@@ -56,11 +100,11 @@
           display: inline-block;
           width: 2rem;
           height: 2rem;
-          fill: $color-white;
+          fill: $color-main-light;
         }
 
         &:not(:last-child) {
-          margin-right: 4rem;
+          margin-right: 5rem;
         }
       }
     }
