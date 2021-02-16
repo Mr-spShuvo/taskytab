@@ -1,5 +1,6 @@
-import * as firebase from 'firebase/app';
+import firebase from 'firebase/app';
 import 'firebase/firestore';
+import 'firebase/analytics';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBNdDWEUljCI-kBWLSqBw3AHI0ZzFkcK6g',
@@ -14,6 +15,11 @@ const firebaseConfig = {
 
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
+firebase.analytics();
+
 const db = firebase.firestore();
 
-export { firebase, db };
+export { db };
+
+// For Testing Purpose
+window.firebase = process.env.NODE_ENV ? firebase : undefined;

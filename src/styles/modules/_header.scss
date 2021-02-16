@@ -38,23 +38,29 @@
       list-style: none;
 
       &__item {
+        backface-visibility: hidden;
+
         & > a {
           display: inline-block;
           border-radius: 3px;
-          padding: 0.7rem;
-          transition: background-color 0.3s ease;
+          display: inline-block;
+          transition: background-color 3s ease;
+          padding: 0.5rem;
+
           &:hover {
             background-color: darken($color-main, 8%);
           }
         }
+
         & > a > svg {
+          display: inline-block;
           width: 2rem;
           height: 2rem;
           fill: $color-white;
         }
 
         &:not(:last-child) {
-          margin-right: 2rem;
+          margin-right: 4rem;
         }
       }
     }

@@ -30,6 +30,9 @@ export const Header = () => {
                 <RiAccountCircleLine />
               </a>
             </li>
+            <li className="options__item">
+              <a href="#">Upgrade </a>
+            </li>
           </ul>
         </nav>
       </div>
