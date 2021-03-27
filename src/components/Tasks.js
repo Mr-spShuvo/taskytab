@@ -1,8 +1,12 @@
 import React from 'react';
+//import { useSelectedTabContext } from '../contexts/SelectedTabContext';
+import { useTasks } from '../hooks/useTasks';
 import { Checkbox } from './common/Checkbox';
 
 export const Tasks = () => {
-  const tasks = [];
+  //const { selectedTab } = useSelectedTabContext();
+  const { tasks } = useTasks('INBOX');
+
   return (
     <div className="tasks" data-testid="tasks">
       <h2 data-testid="tab-name">Cooking</h2>

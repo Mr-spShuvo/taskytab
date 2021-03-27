@@ -17,7 +17,7 @@ export const useTasks = (selectedTabId, userId = 'xlipTsb3Pd33p0kmqXSN') => {
 
   useEffect(() => {
     // Initiate Query on `tasks` collections
-    const query = db.collection('tasks').where('userId', '==', userId);
+    let query = db.collection('tasks').where('userId', '==', userId);
     if (!query) return;
     // if (selectedTabId && !isCollatedTab(selectedTabId)) unsubscribe = query.where('tabId', '==', selectedTabId);
     // else {
@@ -27,11 +27,12 @@ export const useTasks = (selectedTabId, userId = 'xlipTsb3Pd33p0kmqXSN') => {
     // }
     //const weeklyTasks = tasks.filter(task => moment(task.date, 'DD/MM/YYYY').diff(moment(), 'days') <= 7 && !task.archived);
     //if (selectedTabId === 'WEEK') setTasks(weeklyTasks);
-    // TODO: Check that actually the query variables continues taking variables
-    else if (selectedTabId === 'INBOX') query.where('date', '==', '');
-    if (selectedTabId === 'TODAY') query.where('date', '==', moment().format('DD/MM/YYYY'));
-    else if (selectedTabId === 'WEEK') query.where('date', '>=', moment().add(6, 'days').format('DD/MM/YYYY'));
-    else query.where('tabId', '==', selectedTabId);
+    // TODO: Check with Date - it's not working currently
+    if (selectedTabId === 'INBOX') query = query.where('tabId', '==', '0');
+    else if (selectedTabId === 'TODAY') query = query.where('date', '==', moment().format('MM/DD/YYYY'));
+    else if (selectedTabId === 'WEEK') {
+      query = query.where('date', '<=', moment().add(6, 'days').format());
+    } else query = query.where('tabId', '==', selectedTabId);
 
     const unsubscribe = query.onSnapshot(snapshot => {
       // Retrieving list of tasks depend on selected tab

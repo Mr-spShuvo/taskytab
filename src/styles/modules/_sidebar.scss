@@ -23,6 +23,10 @@
       height: 2rem;
       fill: $color-gray;
     }
+
+    &--delete {
+      display: inline-block;
+    }
   }
 
   &__link {
@@ -34,6 +38,9 @@
     margin-top: 2rem;
     transition: all 0.3s ease;
     padding: 0.8rem 1.5rem;
+    background-color: transparent;
+    border: none;
+    outline-color: transparent;
 
     &-text {
       position: relative;
@@ -44,10 +51,10 @@
     &.active {
       color: $color-main;
       background-color: $color-bg;
-
       border-radius: 0.5rem;
+
       svg {
-        fill: $color-main;
+        fill: currentColor;
       }
     }
   }
@@ -97,18 +104,72 @@
   &__tabs {
     margin-top: 0.8rem;
     margin-left: 1.5rem;
+
     .sidebar__link {
-      margin-top: 0.8rem;
+      position: relative;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+
       &-text {
+        display: inline-block;
         position: relative;
-        bottom: 2.5px;
+        bottom: 3px;
+        left: 1rem;
       }
       .sidebar__icon {
+        background-color: transparent;
+        border: none;
+        cursor: pointer;
+
         & > svg {
           width: 1.5rem;
           height: 1.5rem;
         }
+
+        &--delete {
+          visibility: hidden;
+          transition: all 0.3s ease-in-out;
+          opacity: 0;
+        }
       }
+
+      &:hover {
+        .sidebar__icon--delete {
+          visibility: visible;
+          opacity: 1;
+        }
+      }
+    }
+  }
+
+  &__deletePopup {
+    position: absolute;
+    right: 5rem;
+    width: 20rem;
+    padding: 1.5rem 2.5rem;
+    border-radius: 0.5rem;
+    background-color: $color-white;
+    box-shadow: 1px 1px 1rem rgba($color-dark, 0.1);
+  }
+
+  &__deleteAction {
+    display: flex;
+    justify-content: flex-end;
+  }
+
+  &__deleteButton {
+    display: inline-block;
+    border: none;
+    padding: 5px 1rem;
+    border-radius: 4px;
+    &--confirm {
+      margin-right: 5px;
+      background-color: $color-danger;
+      color: $color-white;
+    }
+
+    &--cancel {
     }
   }
 }
