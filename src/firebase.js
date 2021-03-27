@@ -22,4 +22,4 @@ const db = firebase.firestore();
 export { db };
 
 // For Testing Purpose
-window.firebase = process.env.NODE_ENV ? firebase : undefined;
+window.firebase = process.env.NODE_ENV === 'development' ? firebase : undefined;

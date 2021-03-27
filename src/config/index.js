@@ -1,6 +1,6 @@
-// List of CollatedTasks
-export const collatedTasks = [
-  { key: 'INBOX', name: 'Inbox' },
-  { key: 'TODAY', name: 'Today' },
-  { key: 'WEEK', name: 'This Week' }
+// List of CollatedTabs
+export const collatedTabs = [
+  { tabId: 'INBOX', name: 'Inbox' },
+  { tabId: 'TODAY', name: 'Today' },
+  { tabId: 'WEEK', name: 'This Week' }
 ];

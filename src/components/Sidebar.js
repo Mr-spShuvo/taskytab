@@ -10,6 +10,7 @@ export const Sidebar = () => {
   return (
     <div className="sidebar" data-testid="sidebar">
       <ul className="sidebar__generic">
+        {/* CollatedTabs */}
         <li className="sidebar__item">
           <a href="/" className="sidebar__link active">
             <span className="sidebar__icon">

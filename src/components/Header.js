@@ -1,7 +1,8 @@
 /*eslint-disable */
 import React from 'react';
 import logo from '../assets/img/taskytab-logo.svg';
-import { MdAccountCircle, MdBrightness4, MdBrightness7, MdNoteAdd, MdSearch } from 'react-icons/md';
+import { MdAccountCircle, MdWbSunny, MdBrightness3, MdSearch } from 'react-icons/md';
+import { GoPlus } from 'react-icons/go';
 
 export const Header = () => {
   return (
@@ -23,12 +24,12 @@ export const Header = () => {
             <ul className="options">
               <li className="options__item">
                 <a href="#">
-                  <MdNoteAdd />
+                  <GoPlus />
                 </a>
               </li>
               <li className="options__item active">
                 <a href="#">
-                  <MdBrightness4 />
+                  <MdBrightness3 />
                 </a>
               </li>
               <li className="options__item">
