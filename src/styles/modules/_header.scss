@@ -2,9 +2,10 @@
   background-color: $color-main;
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
   z-index: 111;
-  position: fixed;
+  position: sticky;
   width: 100%;
   border-bottom: solid 2px darken($color-main, 5%);
+  padding: 5px 0;
 
   &__nav {
     display: flex;
@@ -13,10 +14,7 @@
   }
 
   &__left {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-
+    flex-basis: 23%;
     .logo {
       margin-right: 11rem;
       text-decoration: none;
@@ -25,16 +23,24 @@
       color: $color-white;
 
       img {
-        height: 3.2rem;
-        margin-right: 0.5rem;
+        height: 2.8rem;
+        margin-right: 0.8rem;
       }
 
       &__text {
-        font-size: 1.8rem;
-        font-weight: $font-bolder;
-        letter-spacing: 0.3px;
+        font-size: 1.6rem;
+        font-weight: $font-bold;
+        letter-spacing: 0.8px;
+        text-transform: uppercase;
       }
     }
+  }
+
+  &__right {
+    flex-basis: 78%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 
     .search {
       display: flex;
@@ -64,9 +70,7 @@
         }
       }
     }
-  }
 
-  &__right {
     .options {
       display: flex;
       justify-content: flex-end;

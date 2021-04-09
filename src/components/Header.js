@@ -1,7 +1,7 @@
 /*eslint-disable */
 import React from 'react';
 import logo from '../assets/img/taskytab-logo.svg';
-import { MdAccountCircle, MdWbSunny, MdBrightness3, MdSearch } from 'react-icons/md';
+import { MdAccountCircle, MdBrightness3, MdSearch } from 'react-icons/md';
 import { GoPlus } from 'react-icons/go';
 
 export const Header = () => {
@@ -14,13 +14,13 @@ export const Header = () => {
               <img src={logo} alt="Taskytab" />
               <h1 className="logo__text">taskytab</h1>
             </a>
+          </div>
+
+          <div className="site-header__right">
             <div className="search">
               <MdSearch />
               <input type="text" placeholder="Search" />
             </div>
-          </div>
-
-          <div className="site-header__right">
             <ul className="options">
               <li className="options__item">
                 <a href="#">

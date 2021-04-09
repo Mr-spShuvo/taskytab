@@ -1,19 +1,18 @@
-import React from 'react';
-//import { useSelectedTabContext } from '../contexts/SelectedTabContext';
-import { useTasks } from '../hooks/useTasks';
-import { Checkbox } from './common/Checkbox';
+import React, { useContext } from 'react';
+
+import { useTasks } from '../hooks';
+import { SelectedTabContext } from '../contexts';
 
 export const Tasks = () => {
-  //const { selectedTab } = useSelectedTabContext();
-  const { tasks } = useTasks('INBOX');
+  const [selectedTab] = useContext(SelectedTabContext);
+  const { tasks } = useTasks();
 
   return (
     <div className="tasks" data-testid="tasks">
-      <h2 data-testid="tab-name">Cooking</h2>
+      <h2 data-testid="tab-name">{selectedTab?.name}</h2>
       <ul className="tasks__list">
         {tasks.map(task => (
           <li key={task.id}>
-            <Checkbox id={task.id} />
             <span>{task.title}</span>
           </li>
         ))}

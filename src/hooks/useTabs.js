@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import { collatedTabs } from '../config';
 
 import { db } from '../firebase';
 import { getDocsWithId } from '../utils';
@@ -14,8 +13,7 @@ export const useTabs = (userId = 'xlipTsb3Pd33p0kmqXSN') => {
   const [tabs, setTabs] = useState([]);
 
   useEffect(() => {
-    const collatedTabsId = collatedTabs.map(tab => tab.tabId);
-    const query = db.collection('tabs').where('userId', '==', userId).where('tabId', 'not-in', collatedTabsId);
+    const query = db.collection('tabs').where('userId', '==', userId);
     const unsubscribe = query.onSnapshot(snapshot => {
       const allTabs = snapshot.docs.map(getDocsWithId);
       setTabs(allTabs);

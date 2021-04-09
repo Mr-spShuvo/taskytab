@@ -1,20 +1,15 @@
 .sidebar {
-  position: fixed;
-  width: 20%;
+  position: sticky;
   padding-right: 2.5rem;
-  padding-left: 5%;
   left: 0;
   top: 0;
   bottom: 0;
-  font-weight: $font-bold;
+  font-weight: $font-medium;
   font-size: 1.3rem;
   overflow-y: auto;
   overflow-x: hidden;
   z-index: 11;
-
-  &__generic {
-    margin-top: 5.8rem;
-  }
+  border-right: 2px solid $color-bg;
 
   &__icon {
     margin-right: 1.5rem;
@@ -63,8 +58,8 @@
     display: flex;
     align-items: baseline;
     justify-content: space-between;
-    border-bottom: 1px solid $color-light;
     margin-top: 2rem;
+    font-weight: $font-bold;
 
     .sidebar__link {
       cursor: unset;
@@ -151,6 +146,7 @@
     border-radius: 0.5rem;
     background-color: $color-white;
     box-shadow: 1px 1px 1rem rgba($color-dark, 0.1);
+    z-index: 11;
   }
 
   &__deleteAction {
@@ -167,9 +163,18 @@
       margin-right: 5px;
       background-color: $color-danger;
       color: $color-white;
+      transition: all 0.3s ease-in-out;
+
+      &:hover {
+        background-color: darken($color-danger, 3%);
+      }
     }
 
     &--cancel {
+      background-color: $color-light;
+      &:hover {
+        background-color: darken($color-light, 5%);
+      }
     }
   }
 }
