@@ -1,8 +1,87 @@
 .tasks {
-  padding-left: 3rem;
-  min-height: 93vh;
+  margin-top: 3rem;
+  min-height: 91vh;
+
+  &__tab-name {
+    color: $color-main;
+    font-size: 2.4rem;
+    padding-bottom: 1.5rem;
+    margin-bottom: 3.5rem;
+    border-bottom: $generic-border;
+  }
 
   &__list {
     list-style: none;
+  }
+
+  &__item {
+    padding: 2rem;
+    background-color: $color-white;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-radius: 0.5rem;
+    box-shadow: $generic-box-shadow;
+
+    &:not(:last-child) {
+      margin-bottom: 2rem;
+    }
+  }
+
+  &__item-left {
+    display: flex;
+    align-items: center;
+  }
+
+  &__item-right {
+    font-weight: $font-bold;
+    line-height: 1;
+
+    & svg {
+      color: $color-main;
+      margin-right: 0.5rem;
+    }
+
+    span {
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      margin-left: 1.5rem;
+      font-size: 1.4rem;
+    }
+  }
+
+  &__checkbox {
+    background-color: transparent;
+    margin-right: 1rem;
+    outline: none;
+    border: none;
+
+    & > svg {
+      height: 3rem;
+      width: 3rem;
+      fill: $color-main-light;
+      transition: all 0.3s ease-in-out;
+
+      &:hover {
+        fill: $color-main;
+      }
+    }
+  }
+
+  &__content {
+    h4 {
+      line-height: 1;
+      font-size: 1.65rem;
+      font-weight: $font-medium;
+      margin: 0;
+      margin-bottom: 0.5rem;
+      color: $color-dark;
+    }
+
+    p {
+      padding: 0;
+      margin: 0;
+    }
   }
 }

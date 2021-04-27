@@ -1,21 +1,17 @@
-$generic-box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 4px 11px;
-$generic-border: 1px solid #f1f1f1;
-$generic-bg: #0000e6;
-
 /* Colors */
 $color-main: #0000e6;
-$color-main-light: #b1b1ff;
+$color-main-light: #9999ff;
 $color-danger: #e60000;
 $color-dark: #111;
 $color-text: #666;
 $color-gray: #999;
-$color-light: #e1e1e1;
-$color-bg: #f1f0ff;
+$color-light: #eee;
+$color-bg: #f6f7f8;
 $color-white: #fff;
 
 /*Utilities variables*/
-$box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 0px 1px, rgba(0, 0, 0, 0.1) 0px 4px 11px;
-$generic-border: 1px solid #f1f1f1;
+$generic-box-shadow: 0px 0px 0px 1px #00000010;
+$generic-border: 2px solid $color-light;
 
 $font-url: 'https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap';
 $font-family: 'Quicksand', Arial, Helvetica, san-serif;

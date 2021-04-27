@@ -9,7 +9,7 @@
   overflow-y: auto;
   overflow-x: hidden;
   z-index: 11;
-  border-right: 2px solid $color-bg;
+  border-right: 2px solid $color-light;
 
   &__icon {
     margin-right: 1.5rem;
@@ -45,8 +45,9 @@
     &:hover,
     &.active {
       color: $color-main;
-      background-color: $color-bg;
+      background-color: $color-light;
       border-radius: 0.5rem;
+      box-shadow: $generic-box-shadow;
 
       svg {
         fill: currentColor;
@@ -59,16 +60,27 @@
     align-items: baseline;
     justify-content: space-between;
     margin-top: 2rem;
-    font-weight: $font-bold;
 
     .sidebar__link {
       cursor: unset;
       margin-top: 0;
 
+      &-text {
+        margin-left: 1rem;
+        font-weight: $font-bold;
+        color: $color-text;
+
+        &:hover,
+        &.active {
+          color: $color-main;
+        }
+      }
+
       &:hover {
         color: $color-text;
         background-color: transparent;
         border-radius: 0;
+        box-shadow: none;
         svg {
           fill: $color-gray;
         }
