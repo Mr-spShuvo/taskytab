@@ -1,10 +1,17 @@
 /*eslint-disable */
-import React from 'react';
+import React, { useState } from 'react';
 import logo from '../assets/img/taskytab-logo.svg';
 import { MdAccountCircle, MdBrightness3, MdSearch } from 'react-icons/md';
 import { GoPlus } from 'react-icons/go';
+import { Modal } from '../common/Modal';
 
 export const Header = () => {
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const handleAddTask = () => {
+    setModalOpen(true);
+  };
+
   return (
     <header className="site-header">
       <div className="container">
@@ -23,9 +30,10 @@ export const Header = () => {
             </div>
             <ul className="options">
               <li className="options__item">
-                <a href="#">
+                <button onClick={handleAddTask} className="btn">
                   <GoPlus />
-                </a>
+                </button>
+                <Modal state={[isModalOpen, setModalOpen]}>ModalContent</Modal>
               </li>
               <li className="options__item active">
                 <a href="#">

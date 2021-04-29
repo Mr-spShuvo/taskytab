@@ -1,0 +1,39 @@
+.modal {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  box-shadow: -3px 6px 1rem rgba(0, 0, 0, 0.5);
+  background-color: rgba(0, 0, 0, 0.5);
+
+  &__content {
+    position: relative;
+    background-color: $color-bg;
+    width: 28vw;
+    height: 36vh;
+    min-width: 30rem;
+    min-height: 24rem;
+    padding: 4rem;
+    border-radius: 1rem;
+  }
+
+  &__close {
+    position: absolute;
+    top: 1.2rem;
+    right: 0.5rem;
+
+    &:hover {
+      color: $color-main;
+    }
+
+    & > svg {
+      height: 2.5rem;
+      width: 2.5rem;
+    }
+  }
+}

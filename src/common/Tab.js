@@ -41,10 +41,10 @@ export const Tab = ({ tab }) => {
         <div className="sidebar__deletePopup">
           <p>Are you sure, you want to delete this tab?</p>
           <div className="sidebar__deleteAction">
-            <button onClick={handleDeleteConfirm} className="sidebar__deleteButton sidebar__deleteButton--confirm">
+            <button onClick={handleDeleteConfirm} className="btn btn--danger btn--sm sidebar__deleteButton sidebar__deleteButton--confirm">
               Delete
             </button>
-            <button onClick={handleDeleteCancel} className="sidebar__deleteButton sidebar__deleteButton--cancel">
+            <button onClick={handleDeleteCancel} className="btn btn--neutral btn--sm sidebar__deleteButton sidebar__deleteButton--cancel">
               Cancel
             </button>
           </div>

@@ -3,6 +3,7 @@ $color-main: #0000e6;
 $color-main-light: #9999ff;
 $color-danger: #e60000;
 $color-dark: #111;
+$color-darker: #333;
 $color-text: #666;
 $color-gray: #999;
 $color-light: #eee;
@@ -11,7 +12,8 @@ $color-white: #fff;
 
 /*Utilities variables*/
 $generic-box-shadow: 0px 0px 0px 1px #00000010;
-$generic-border: 2px solid $color-light;
+$generic-border: 1px solid $color-light;
+$generic-transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
 
 $font-url: 'https://fonts.googleapis.com/css2?family=Quicksand:wght@500;600;700&display=swap';
 $font-family: 'Quicksand', Arial, Helvetica, san-serif;

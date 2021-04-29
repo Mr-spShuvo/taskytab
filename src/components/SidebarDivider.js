@@ -1,8 +1,14 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { MdAdd } from 'react-icons/md';
 import { HiChevronDown, HiChevronRight } from 'react-icons/hi';
+import { Modal } from '../common/Modal';
 
 const SidebarDivider = ({ showTabs, toggleTabs }) => {
+  const [isModalOpen, setModalOpen] = useState(false);
+
+  const handleAddTab = () => {
+    setModalOpen(true);
+  };
   return (
     <div className="sidebar__divider">
       <div className="sidebar__link">
@@ -11,11 +17,12 @@ const SidebarDivider = ({ showTabs, toggleTabs }) => {
           <span className={`sidebar__link-text ${!showTabs && 'active'}`}>Tabs List</span>
         </button>
       </div>
-      <button className="sidebar__action">
-        <span className="sidebar__icon">
+      <div className="sidebar__action">
+        <button className="btn btn--sm sidebar__icon" onClick={handleAddTab}>
           <MdAdd />
-        </span>
-      </button>
+        </button>
+        <Modal state={[isModalOpen, setModalOpen]}>ModalContent</Modal>
+      </div>
     </div>
   );
 };

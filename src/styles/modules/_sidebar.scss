@@ -97,6 +97,7 @@
     outline: none;
     background-color: transparent;
     transition: background-color 0.3s ease;
+    color: $color-text;
 
     .sidebar__icon {
       margin-right: 0;
@@ -171,22 +172,9 @@
     border: none;
     padding: 5px 1rem;
     border-radius: 4px;
+
     &--confirm {
       margin-right: 5px;
-      background-color: $color-danger;
-      color: $color-white;
-      transition: all 0.3s ease-in-out;
-
-      &:hover {
-        background-color: darken($color-danger, 3%);
-      }
-    }
-
-    &--cancel {
-      background-color: $color-light;
-      &:hover {
-        background-color: darken($color-light, 5%);
-      }
     }
   }
 }

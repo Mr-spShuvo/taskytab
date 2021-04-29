@@ -79,6 +79,11 @@
 
       &__item {
         backface-visibility: hidden;
+        color: $color-main-light;
+
+        &:hover {
+          color: $color-white;
+        }
 
         &.active {
           & > a > svg {
@@ -94,6 +99,7 @@
 
           &:hover,
           .active {
+            color: $color-white;
             & > svg {
               fill: $color-white;
             }
