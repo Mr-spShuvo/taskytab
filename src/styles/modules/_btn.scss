@@ -4,6 +4,7 @@
   background: transparent;
   font-size: 1.45rem;
   font-weight: $font-medium;
+  border-radius: 0.4rem;
   border: none;
   outline: transparent;
   transition: $generic-transition;
@@ -49,4 +50,9 @@
     font-size: 1.6rem;
     padding: 0.85rem 2.5rem;
   }
+}
+
+button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
 }

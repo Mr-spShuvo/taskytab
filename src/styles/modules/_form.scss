@@ -1,0 +1,41 @@
+.form {
+  &__label {
+    margin-bottom: 1.5rem;
+    display: block;
+    font-size: 1.5rem;
+    font-weight: $font-medium;
+  }
+
+  &__field {
+    margin-bottom: 2rem;
+
+    &--color-picker {
+      .form__label {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 2rem;
+
+        & svg {
+          margin-right: 1rem;
+        }
+      }
+    }
+  }
+
+  &__input {
+    display: block;
+    padding: 1rem 2rem;
+    border: 2px solid $color-light;
+    width: 100%;
+    font-size: 1.45rem;
+  }
+
+  &__actions {
+    margin-top: 1rem;
+    text-align: right;
+    button:first-child {
+      margin-right: 0.8rem;
+    }
+  }
+}

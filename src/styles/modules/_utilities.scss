@@ -6,3 +6,12 @@
 .active {
   color: $color-main;
 }
+
+.text-center {
+  text-align: center;
+}
+
+.form.form--add-tab .twitter-picker {
+  left: 50%;
+  transform: translate(-50%);
+}

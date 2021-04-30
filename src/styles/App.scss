@@ -3,6 +3,8 @@
 @import './modules/base';
 @import './modules/mixins';
 
+@import './modules/btn';
+@import './modules/form';
 @import './modules/components';
 @import './modules/utilities';
 @import './modules/modal';
@@ -10,4 +12,3 @@
 @import './modules/content';
 @import './modules/sidebar';
 @import './modules/tasks';
-@import './modules/btn';
