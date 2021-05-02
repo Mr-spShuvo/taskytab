@@ -2,20 +2,29 @@ import React, { useEffect, useState } from 'react';
 import { TwitterPicker } from 'react-color';
 import { FaCircle } from 'react-icons/fa';
 
-import { Modal } from '../common/Modal';
+import { Input, Modal } from '../common';
 
 const initialInput = { name: '', color: '#22194D' };
 
 export const ModalAddTab = ({ state }) => {
-  const [input, setInput] = useState(initialInput);
-  const [error, setError] = useState(true);
+  const [input, setInput] = useState(() => initialInput);
+  const [error, setError] = useState(() => ({ name: '' }));
+  const [hasError, setHasError] = useState(true);
 
   useEffect(() => {
-    if (input.color && input.name) setError(false);
-  }, [input]);
+    if (error.name || !input.name) setHasError(true);
+    else setHasError(false);
+  }, [error.name, input.name]);
 
   const handleInputChange = event => {
     const { name, value } = event.target;
+
+    setError({ ...error, [name]: '' });
+    if (name === 'name' && value.length === 0)
+      setError({ ...error, name: 'Name is required' });
+    if (name === 'name' && value.length >= 30)
+      setError({ ...error, name: 'Must be less than 30 characters' });
+
     setInput({ ...input, [name]: value });
   };
 
@@ -23,23 +32,33 @@ export const ModalAddTab = ({ state }) => {
     setInput({ ...input, color });
   };
 
-  const handleSubmit = event => {
-    event.preventDefault();
+  const handleSubmit = () => {
+    // API Call
+    handleReset();
   };
 
   const handleReset = () => {
     setInput(initialInput);
-    setError(true);
+    setHasError(true);
   };
 
   return (
-    <Modal state={state} title="Add New Tab" onSubmit={handleSubmit} onReset={handleReset} hasError={error}>
-      <div className="form__field">
-        <label htmlFor="name" className="form__label">
-          Tab Name:
-        </label>
-        <input className="form__input" value={input.name} type="text" id="name" name="name" placeholder="e.g. 👨‍🍳 Cooking" required onChange={handleInputChange} autoComplete="off" />
-      </div>
+    <Modal
+      state={state}
+      title="Add New Tab"
+      isForm={true}
+      onSubmit={handleSubmit}
+      onReset={handleReset}
+      hasError={hasError}
+    >
+      <Input
+        label="Tab Name"
+        name="name"
+        placeholder="e.g. 👨‍🍳 Cooking"
+        value={input.name}
+        onChange={handleInputChange}
+        error={error.name}
+      />
       <div className="form__field form__field--color-picker">
         <label className="form__label" htmlFor="color">
           <FaCircle color={input.color} /> Select Tab Color

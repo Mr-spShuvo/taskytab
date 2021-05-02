@@ -1,12 +1,13 @@
 .form {
   &__label {
-    margin-bottom: 1.5rem;
+    margin-bottom: 1rem;
     display: block;
     font-size: 1.5rem;
     font-weight: $font-medium;
   }
 
   &__field {
+    width: 100%;
     margin-bottom: 2rem;
 
     &--color-picker {
@@ -25,10 +26,30 @@
 
   &__input {
     display: block;
-    padding: 1rem 2rem;
+    padding: 1rem 1.5rem;
+    border-radius: 0.4rem;
     border: 2px solid $color-light;
+    outline: none;
     width: 100%;
     font-size: 1.45rem;
+    transition: $generic-transition;
+
+    &:focus {
+      border: 2px solid $color-gray;
+    }
+
+    &--textarea {
+      resize: none;
+    }
+  }
+
+  &__group {
+    display: flex;
+    justify-content: space-between;
+
+    & > *:not(:last-child) {
+      margin-right: 1.5rem;
+    }
   }
 
   &__actions {
@@ -37,5 +58,13 @@
     button:first-child {
       margin-right: 0.8rem;
     }
+  }
+
+  &__error {
+    color: $color-danger;
+    font-size: 1.2rem;
+    font-weight: $font-medium;
+    display: inline-block;
+    margin-top: 0.5rem;
   }
 }

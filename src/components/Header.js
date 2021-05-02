@@ -1,9 +1,11 @@
 /*eslint-disable */
 import React, { useState } from 'react';
-import logo from '../assets/img/taskytab-logo.svg';
 import { MdAccountCircle, MdBrightness3, MdSearch } from 'react-icons/md';
 import { GoPlus } from 'react-icons/go';
-import { Modal } from '../common/Modal';
+
+import logo from '../assets/img/taskytab-logo.svg';
+
+import { ModalAddTask } from './ModalAddTask';
 
 export const Header = () => {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -33,7 +35,7 @@ export const Header = () => {
                 <button onClick={handleAddTask} className="btn">
                   <GoPlus />
                 </button>
-                <Modal state={[isModalOpen, setModalOpen]}>ModalContent</Modal>
+                <ModalAddTask state={[isModalOpen, setModalOpen]} />
               </li>
               <li className="options__item active">
                 <a href="#">

@@ -1,12 +1,12 @@
 import React, { useContext, useState, useEffect } from 'react';
+import { HiChevronDown, HiChevronRight } from 'react-icons/hi';
+import { MdAdd, MdMoreHoriz } from 'react-icons/md';
 
-import { useTasks } from '../hooks';
+import { ARCHIVED_TAB } from '../utils';
+import { ModalAddTask } from './ModalAddTask';
 import { SelectedTabContext } from '../contexts';
 import { Task } from '../common';
-import { HiChevronDown, HiChevronRight } from 'react-icons/hi';
-import { ARCHIVED_TAB } from '../utils';
-import { MdAdd, MdMoreHoriz } from 'react-icons/md';
-import { Modal } from '../common/Modal';
+import { useTasks } from '../hooks';
 
 export const Tasks = () => {
   const [isModalOpen, setModalOpen] = useState(false);
@@ -39,7 +39,7 @@ export const Tasks = () => {
             <button className="btn btn--neutral" onClick={handleAddTask}>
               <MdAdd /> Add Task
             </button>
-            <Modal state={[isModalOpen, setModalOpen]}>ModalContent</Modal>
+            <ModalAddTask state={[isModalOpen, setModalOpen]} />
             <button className="btn">
               <MdMoreHoriz size={18} />
             </button>
@@ -53,9 +53,16 @@ export const Tasks = () => {
       </ul>
       {!!archivedTasks.length && selectedTab?.id !== ARCHIVED_TAB.id && (
         <div className="tasks--archived">
-          <button className="tasks--archived__tab-name" onClick={handleShowArchivedTasks}>
-            <span className="tasks--archived__icon ">{showArchivedTasks ? <HiChevronDown /> : <HiChevronRight />}</span>
-            <span className={`${!showArchivedTasks ? 'active' : ''}`}>Archived Tasks</span>
+          <button
+            className="tasks--archived__tab-name"
+            onClick={handleShowArchivedTasks}
+          >
+            <span className="tasks--archived__icon ">
+              {showArchivedTasks ? <HiChevronDown /> : <HiChevronRight />}
+            </span>
+            <span className={`${!showArchivedTasks ? 'active' : ''}`}>
+              Archived Tasks
+            </span>
           </button>
           {showArchivedTasks && (
             <ul className="tasks__list">

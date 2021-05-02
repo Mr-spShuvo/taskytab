@@ -2,15 +2,27 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import { MdClose } from 'react-icons/md';
 
-export const Modal = ({ state, title, isForm = true, onSubmit, onReset, hasError, children }) => {
+export const Modal = ({
+  state,
+  title,
+  isForm = false,
+  onSubmit,
+  onReset,
+  hasError,
+  children
+}) => {
   const [isOpen, setIsOpen] = state;
   if (!isOpen) return null;
-
-  console.log(hasError);
 
   const handleClose = event => {
     event.preventDefault();
     onReset();
+    setIsOpen(false);
+  };
+
+  const handleSubmit = event => {
+    event.preventDefault();
+    onSubmit();
     setIsOpen(false);
   };
 
@@ -25,13 +37,21 @@ export const Modal = ({ state, title, isForm = true, onSubmit, onReset, hasError
         </div>
         <div className="modal__body">
           {isForm ? (
-            <form className="form form--add-tab" onSubmit={onSubmit}>
+            <form className="form" onSubmit={handleSubmit}>
               {children}
               <div className="form__actions">
-                <button className="btn btn--neutral btn--lg" type="button" onClick={handleClose}>
+                <button
+                  className="btn btn--neutral btn--lg"
+                  type="button"
+                  onClick={handleClose}
+                >
                   Cancel
                 </button>
-                <button className="btn btn--main btn--lg" type="submit" disabled={hasError}>
+                <button
+                  className="btn btn--main btn--lg"
+                  type="submit"
+                  disabled={hasError}
+                >
                   Save
                 </button>
               </div>
@@ -42,6 +62,6 @@ export const Modal = ({ state, title, isForm = true, onSubmit, onReset, hasError
         </div>
       </div>
     </div>,
-    document.body
+    document.getElementById('modal')
   );
 };

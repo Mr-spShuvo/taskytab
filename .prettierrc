@@ -1,7 +1,7 @@
 {
   "endOfLine": "lf",
   "tabWidth": 2,
-  "printWidth": 9999,
+  "printWidth": 85,
   "singleQuote": true,
   "arrowParens": "avoid",
   "trailingComma": "none",
