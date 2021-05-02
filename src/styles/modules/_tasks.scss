@@ -7,7 +7,7 @@
     justify-content: space-between;
     align-items: center;
     padding-bottom: 1.5rem;
-    border-bottom: $generic-border;
+    border-bottom: var(--generic-border);
     margin-bottom: 3rem;
   }
 
@@ -22,7 +22,7 @@
   }
 
   &__tab-name {
-    color: $color-main;
+    color: var(--color-main);
     font-size: 2.4rem;
     margin: 0;
   }
@@ -33,12 +33,12 @@
 
   &__item {
     padding: 2rem;
-    background-color: $color-white;
+    background-color: var(--color-white);
     display: flex;
     align-items: center;
     justify-content: space-between;
     border-radius: 0.5rem;
-    box-shadow: $generic-box-shadow;
+    box-shadow: var(--generic-box-shadow);
 
     &:not(:last-child) {
       margin-bottom: 1rem;
@@ -51,11 +51,11 @@
   }
 
   &__item-right {
-    font-weight: $font-bold;
+    font-weight: var(--font-bold);
     line-height: 1;
 
     & svg {
-      color: $color-main;
+      color: var(--color-main);
       margin-right: 0.5rem;
     }
 
@@ -77,11 +77,11 @@
     & > svg {
       height: 3rem;
       width: 3rem;
-      fill: $color-main-light;
+      fill: var(--color-main-lighter);
       transition: all 0.3s ease-in-out;
 
       &:hover {
-        fill: $color-main;
+        fill: var(--color-main);
       }
     }
   }
@@ -90,10 +90,10 @@
     h4 {
       line-height: 1;
       font-size: 1.45rem;
-      font-weight: $font-medium;
+      font-weight: var(--font-medium);
       margin: 0;
       margin-bottom: 0.5rem;
-      color: $color-dark;
+      color: var(--color-dark);
     }
 
     p {
@@ -108,12 +108,12 @@
     }
 
     &__tab-name {
-      color: $color-text;
+      color: var(--color-text);
       background: transparent;
       border: none;
       outline: transparent;
       font-size: 1.7rem;
-      font-weight: $font-bold;
+      font-weight: var(--font-bold);
       margin-top: 3rem;
       margin-bottom: 1.5rem;
       display: flex;
@@ -130,4 +130,8 @@
       }
     }
   }
+}
+
+.dark .tasks__item {
+  background-color: var(--color-white);
 }

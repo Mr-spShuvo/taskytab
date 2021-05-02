@@ -36,7 +36,7 @@ export const Tasks = () => {
         </h2>
         {selectedTab?.id !== ARCHIVED_TAB.id && (
           <div className="tasks__top-actions">
-            <button className="btn btn--neutral" onClick={handleAddTask}>
+            <button className="btn btn--neutral btn--round" onClick={handleAddTask}>
               <MdAdd /> Add Task
             </button>
             <ModalAddTask state={[isModalOpen, setModalOpen]} />

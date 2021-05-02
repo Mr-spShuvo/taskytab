@@ -5,10 +5,11 @@ import { FaCircle } from 'react-icons/fa';
 import { Input, Modal } from '../common';
 
 const initialInput = { name: '', color: '#22194D' };
+const initialError = { name: '' };
 
 export const ModalAddTab = ({ state }) => {
   const [input, setInput] = useState(() => initialInput);
-  const [error, setError] = useState(() => ({ name: '' }));
+  const [error, setError] = useState(() => initialError);
   const [hasError, setHasError] = useState(true);
 
   useEffect(() => {
@@ -39,6 +40,7 @@ export const ModalAddTab = ({ state }) => {
 
   const handleReset = () => {
     setInput(initialInput);
+    setError(initialError);
     setHasError(true);
   };
 

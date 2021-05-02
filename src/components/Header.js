@@ -1,14 +1,21 @@
 /*eslint-disable */
-import React, { useState } from 'react';
-import { MdAccountCircle, MdBrightness3, MdSearch } from 'react-icons/md';
+import React, { useContext, useState } from 'react';
+import {
+  MdAccountCircle,
+  MdBrightness3,
+  MdBrightness7,
+  MdSearch
+} from 'react-icons/md';
 import { GoPlus } from 'react-icons/go';
 
 import logo from '../assets/img/taskytab-logo.svg';
 
 import { ModalAddTask } from './ModalAddTask';
+import { ThemeContext } from '../contexts';
 
 export const Header = () => {
   const [isModalOpen, setModalOpen] = useState(false);
+  const [darkMode, setDarkMode] = useContext(ThemeContext);
 
   const handleAddTask = () => {
     setModalOpen(true);
@@ -37,12 +44,16 @@ export const Header = () => {
                 </button>
                 <ModalAddTask state={[isModalOpen, setModalOpen]} />
               </li>
-              <li className="options__item active">
-                <a href="#">
-                  <MdBrightness3 />
-                </a>
-              </li>
               <li className="options__item">
+                <button
+                  href="#"
+                  onClick={() => setDarkMode(!darkMode)}
+                  className="btn"
+                >
+                  {darkMode ? <MdBrightness7 /> : <MdBrightness3 />}
+                </button>
+              </li>
+              <li className="options__item active">
                 <a href="#">
                   <MdAccountCircle />
                 </a>

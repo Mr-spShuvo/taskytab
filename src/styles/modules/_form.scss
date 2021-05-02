@@ -3,7 +3,7 @@
     margin-bottom: 1rem;
     display: block;
     font-size: 1.5rem;
-    font-weight: $font-medium;
+    font-weight: var(--font-medium);
   }
 
   &__field {
@@ -28,14 +28,14 @@
     display: block;
     padding: 1rem 1.5rem;
     border-radius: 0.4rem;
-    border: 2px solid $color-light;
+    border: 2px solid var(--color-light);
     outline: none;
     width: 100%;
     font-size: 1.45rem;
-    transition: $generic-transition;
+    transition: var(--generic-transition);
 
     &:focus {
-      border: 2px solid $color-gray;
+      border: 2px solid var(--color-gray-light);
     }
 
     &--textarea {
@@ -61,10 +61,17 @@
   }
 
   &__error {
-    color: $color-danger;
-    font-size: 1.2rem;
-    font-weight: $font-medium;
+    color: var(--color-danger);
+    font-size: 1.25rem;
+    font-weight: var(--font-bold);
     display: inline-block;
     margin-top: 0.5rem;
+  }
+}
+
+.dark .form {
+  &__input {
+    background: var(--color-white);
+    color: var(--color-text);
   }
 }

@@ -21,9 +21,9 @@ const initialInput = {
 const initialError = { title: '', description: '', date: '' };
 
 export const ModalAddTask = ({ state }) => {
-  const [input, setInput] = useState(initialInput);
-  const [hasError, setHasError] = useState();
-  const [error, setError] = useState(initialError);
+  const [input, setInput] = useState(() => initialInput);
+  const [error, setError] = useState(() => initialError);
+  const [hasError, setHasError] = useState(true);
 
   useEffect(() => {
     if (error.description || error.title || error.date || !input.title)
@@ -54,6 +54,7 @@ export const ModalAddTask = ({ state }) => {
 
   const handleReset = () => {
     setInput(initialInput);
+    setError(initialError);
     setHasError(true);
   };
 

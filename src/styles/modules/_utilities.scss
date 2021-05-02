@@ -4,7 +4,8 @@
 }
 
 .active {
-  color: $color-main;
+  color: var(--color-main);
+  font-weight: var(--font-bold);
 }
 
 .text-center {

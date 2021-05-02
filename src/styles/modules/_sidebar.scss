@@ -4,19 +4,19 @@
   left: 0;
   top: 0;
   bottom: 0;
-  font-weight: $font-medium;
-  font-size: 1.3rem;
+  font-weight: var(--font-medium);
+  font-size: 1.45rem;
   overflow-y: auto;
   overflow-x: hidden;
   z-index: 11;
-  border-right: 2px solid $color-light;
+  border-right: var(--generic-border);
 
   &__icon {
     margin-right: 1.5rem;
     & > svg {
       width: 2rem;
       height: 2rem;
-      fill: $color-gray;
+      fill: var(--color-gray);
     }
 
     &--delete {
@@ -27,7 +27,7 @@
   &__link {
     text-decoration: none;
     user-select: none;
-    color: $color-text;
+    color: var(--color-text);
     display: inline-block;
     width: 100%;
     margin-top: 2rem;
@@ -44,10 +44,10 @@
 
     &:hover,
     &.active {
-      color: $color-main;
-      background-color: $color-light;
+      color: var(--color-main);
+      background-color: var(--color-light);
       border-radius: 0.5rem;
-      box-shadow: $generic-box-shadow;
+      box-shadow: var(--generic-box-shadow);
 
       svg {
         fill: currentColor;
@@ -67,22 +67,22 @@
 
       &-text {
         margin-left: 1rem;
-        font-weight: $font-bold;
-        color: $color-text;
+        font-weight: var(--font-bold);
+        color: var(--color-text);
 
         &:hover,
         &.active {
-          color: $color-main;
+          color: var(--color-main);
         }
       }
 
       &:hover {
-        color: $color-text;
+        color: var(--color-text);
         background-color: transparent;
         border-radius: 0;
         box-shadow: none;
         svg {
-          fill: $color-gray;
+          fill: var(--color-gray);
         }
       }
     }
@@ -97,7 +97,7 @@
     outline: none;
     background-color: transparent;
     transition: background-color 0.3s ease;
-    color: $color-text;
+    color: var(--color-text);
 
     .sidebar__icon {
       margin-right: 0;
@@ -131,6 +131,7 @@
         cursor: pointer;
 
         & > svg {
+          fill: var(--color-text);
           width: 1.5rem;
           height: 1.5rem;
         }
@@ -157,8 +158,8 @@
     width: 20rem;
     padding: 1.5rem 2.5rem;
     border-radius: 0.5rem;
-    background-color: $color-white;
-    box-shadow: 1px 1px 1rem rgba($color-dark, 0.1);
+    background-color: var(--color-white);
+    box-shadow: 1px 1px 1rem rgba(var(--color-dark), 0.1);
     z-index: 11;
   }
 
@@ -176,5 +177,11 @@
     &--confirm {
       margin-right: 5px;
     }
+  }
+}
+
+.dark .sidebar {
+  &__deletePopup {
+    background: var(--color-white);
   }
 }

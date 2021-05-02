@@ -1,11 +1,9 @@
 import React, { createContext } from 'react';
 import { useTabs } from '../hooks';
 
-const TabsContext = createContext();
+export const TabsContext = createContext();
 
-const TabsProvider = ({ children }) => {
-  const [tabs, setTabs] = useTabs();
-  return <TabsContext.Provider value={[tabs, setTabs]}>{children}</TabsContext.Provider>;
+export const TabsProvider = ({ children }) => {
+  const tabsState = useTabs();
+  return <TabsContext.Provider value={tabsState}>{children}</TabsContext.Provider>;
 };
-
-export { TabsContext, TabsProvider };

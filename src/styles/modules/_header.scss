@@ -1,10 +1,9 @@
 .site-header {
-  background-color: $color-main;
+  background-color: var(--color-main);
   box-shadow: 0 1px 2px rgba(0, 0, 0, 0.15);
   z-index: 111;
   position: sticky;
   width: 100%;
-  border-bottom: solid 2px darken($color-main, 5%);
   padding: 5px 0;
 
   &__nav {
@@ -20,7 +19,7 @@
       text-decoration: none;
       display: flex;
       align-items: center;
-      color: $color-white;
+      color: var(--color-white);
 
       img {
         height: 2.8rem;
@@ -29,7 +28,7 @@
 
       &__text {
         font-size: 1.6rem;
-        font-weight: $font-bold;
+        font-weight: var(--font-bold);
         letter-spacing: 0.8px;
         text-transform: uppercase;
       }
@@ -48,25 +47,26 @@
       width: 28rem;
       padding: 0.5rem 1.5rem;
       border-radius: 5rem;
-      background-color: darken($color-main-light, 20%);
+      background-color: var(--color-main-light);
 
       & > svg {
         display: inline-block;
         width: 2rem;
         height: 2rem;
-        fill: $color-main-light;
+        fill: var(--color-main-lighter);
       }
 
       input {
         display: block;
+        width: 100%;
         margin-left: 1rem;
         background-color: transparent;
         border: none;
         outline: none;
-        color: $color-bg;
+        color: var(--color-bg);
 
         &::placeholder {
-          color: $color-main-light;
+          color: var(--color-main-lighter);
         }
       }
     }
@@ -79,15 +79,15 @@
 
       &__item {
         backface-visibility: hidden;
-        color: $color-main-light;
+        color: var(--color-main-lighter);
 
         &:hover {
-          color: $color-white;
+          color: var(--color-white);
         }
 
         &.active {
           & > a > svg {
-            fill: $color-white;
+            fill: var(--color-white);
           }
         }
 
@@ -99,9 +99,9 @@
 
           &:hover,
           .active {
-            color: $color-white;
+            color: var(--color-white);
             & > svg {
-              fill: $color-white;
+              fill: var(--color-white);
             }
           }
         }
@@ -110,11 +110,41 @@
           display: inline-block;
           width: 2rem;
           height: 2rem;
-          fill: $color-main-light;
+          fill: var(--color-main-lighter);
         }
 
         &:not(:last-child) {
           margin-right: 5rem;
+        }
+      }
+    }
+  }
+}
+
+.dark .site-header {
+  .logo {
+    color: var(--color-text);
+  }
+
+  .options {
+    &__item {
+      &:hover {
+        color: var(--color-text);
+      }
+
+      &.active {
+        & > a > svg {
+          fill: var(--color-text);
+        }
+      }
+
+      & > a {
+        &:hover,
+        .active {
+          color: var(--color-text);
+          & > svg {
+            fill: var(--color-text);
+          }
         }
       }
     }
