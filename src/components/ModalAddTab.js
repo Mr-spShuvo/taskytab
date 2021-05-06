@@ -1,8 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { TwitterPicker } from 'react-color';
 import { FaCircle } from 'react-icons/fa';
 
 import { Input, Modal } from '../common';
+import { SelectedTabContext } from '../contexts';
+import { db } from '../firebase';
+import { getDocsWithId } from '../utils';
 
 const initialInput = { name: '', color: '#22194D' };
 const initialError = { name: '' };
@@ -11,6 +14,8 @@ export const ModalAddTab = ({ state }) => {
   const [input, setInput] = useState(() => initialInput);
   const [error, setError] = useState(() => initialError);
   const [hasError, setHasError] = useState(true);
+  // eslint-disable-next-line no-unused-vars
+  const [_selectedTab, setSelectedTab] = useContext(SelectedTabContext);
 
   useEffect(() => {
     if (error.name || !input.name) setHasError(true);
@@ -19,13 +24,11 @@ export const ModalAddTab = ({ state }) => {
 
   const handleInputChange = event => {
     const { name, value } = event.target;
-
     setError({ ...error, [name]: '' });
     if (name === 'name' && value.length === 0)
       setError({ ...error, name: 'Name is required' });
     if (name === 'name' && value.length >= 30)
       setError({ ...error, name: 'Must be less than 30 characters' });
-
     setInput({ ...input, [name]: value });
   };
 
@@ -33,8 +36,12 @@ export const ModalAddTab = ({ state }) => {
     setInput({ ...input, color });
   };
 
-  const handleSubmit = () => {
-    // API Call
+  const handleSubmit = async () => {
+    const userId = 'xlipTsb3Pd33p0kmqXSN';
+    const tabRef = await db.collection('tabs').add({ ...input, userId });
+    const tab = await tabRef.get();
+    const newTab = getDocsWithId(tab);
+    setSelectedTab(newTab);
     handleReset();
   };
 

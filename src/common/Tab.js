@@ -2,11 +2,14 @@ import React, { useContext, useState } from 'react';
 import { MdLens } from 'react-icons/md';
 import { BiTrash } from 'react-icons/bi';
 import { SelectedTabContext } from '../contexts';
+import { db } from '../firebase';
+import { INBOX_TAB } from '../utils';
 
 export const Tab = ({ tab }) => {
   const { name, color, id } = tab;
 
   const [selectedTab, setSelectedTab] = useContext(SelectedTabContext);
+
   const handleSelectTab = tab => {
     setSelectedTab(tab);
   };
@@ -16,7 +19,9 @@ export const Tab = ({ tab }) => {
     setIsDeleteClick(true);
   };
 
-  const handleDeleteConfirm = () => {
+  const handleDeleteConfirm = async id => {
+    setSelectedTab(INBOX_TAB);
+    await db.collection('tabs').doc(id).delete();
     setIsDeleteClick(false);
   };
 
@@ -27,13 +32,22 @@ export const Tab = ({ tab }) => {
   return (
     <li className="sidebar__item">
       {/* eslint-disable-next-line */}
-      <div className={`sidebar__link ${selectedTab.id === id && 'active'}`} onClick={() => handleSelectTab(tab)}>
+      <div
+        className={`sidebar__link ${selectedTab.id === id && 'active'}`}
+        onClick={() => handleSelectTab(tab)}
+      >
         <span className="sidebar__icon">
           <MdLens style={{ fill: color }} />
           <span className="sidebar__link-text">{name}</span>
         </span>
-
-        <button onClick={handleDelete} className="sidebar__icon sidebar__icon--delete" style={{ visibility: isDeleteClick && 'visible', opacity: isDeleteClick && 1 }}>
+        <button
+          onClick={handleDelete}
+          className="sidebar__icon sidebar__icon--delete"
+          style={{
+            visibility: isDeleteClick && 'visible',
+            opacity: isDeleteClick && 1
+          }}
+        >
           <BiTrash />
         </button>
       </div>
@@ -41,10 +55,16 @@ export const Tab = ({ tab }) => {
         <div className="sidebar__deletePopup">
           <p>Are you sure, you want to delete this tab?</p>
           <div className="sidebar__deleteAction">
-            <button onClick={handleDeleteConfirm} className="btn btn--danger btn--sm sidebar__deleteButton sidebar__deleteButton--confirm">
+            <button
+              onClick={() => handleDeleteConfirm(id)}
+              className="btn btn--danger btn--sm sidebar__deleteButton sidebar__deleteButton--confirm"
+            >
               Delete
             </button>
-            <button onClick={handleDeleteCancel} className="btn btn--neutral btn--sm sidebar__deleteButton sidebar__deleteButton--cancel">
+            <button
+              onClick={handleDeleteCancel}
+              className="btn btn--neutral btn--sm sidebar__deleteButton sidebar__deleteButton--cancel"
+            >
               Cancel
             </button>
           </div>
