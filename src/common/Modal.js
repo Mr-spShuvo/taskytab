@@ -8,7 +8,7 @@ export const Modal = ({
   isForm = false,
   onSubmit,
   onReset,
-  hasError,
+  isDisabled,
   children
 }) => {
   const [isOpen, setIsOpen] = state;
@@ -50,7 +50,7 @@ export const Modal = ({
                 <button
                   className="btn btn--main btn--lg"
                   type="submit"
-                  disabled={hasError}
+                  disabled={isDisabled}
                 >
                   Save
                 </button>

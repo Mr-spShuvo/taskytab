@@ -1,39 +1,54 @@
-import React, { useContext, useEffect, useState } from 'react';
+/* eslint-disable react/display-name */
+import React, { useContext, useEffect } from 'react';
 import { TwitterPicker } from 'react-color';
 import { FaCircle } from 'react-icons/fa';
 
-import { Input, Modal } from '../common';
-import { SelectedTabContext } from '../contexts';
 import { db } from '../firebase';
+import { Input, Modal } from '../common';
+import { useModalForm } from '../hooks';
 import { getDocsWithId } from '../utils';
+import { SelectedTabContext } from '../contexts';
 
-const initialInput = { name: '', color: '#22194D' };
-const initialError = { name: '' };
+const initialState = {
+  input: {
+    name: '',
+    color: '#22194D'
+  },
+  error: { name: '' },
+  isDisabled: true
+};
 
-export const ModalAddTab = ({ state }) => {
-  const [input, setInput] = useState(() => initialInput);
-  const [error, setError] = useState(() => initialError);
-  const [hasError, setHasError] = useState(true);
-  // eslint-disable-next-line no-unused-vars
-  const [_selectedTab, setSelectedTab] = useContext(SelectedTabContext);
+export const ModalAddTab = ({ state: modalState }) => {
+  const setSelectedTab = useContext(SelectedTabContext)[1];
+  const { state, dispatch, actionTypes, handleReset } = useModalForm(initialState);
+  const { error, input, isDisabled } = state;
 
   useEffect(() => {
-    if (error.name || !input.name) setHasError(true);
-    else setHasError(false);
-  }, [error.name, input.name]);
+    if (error.name || !input.name)
+      dispatch({ type: actionTypes.DISABLED, payload: { isDisabled: true } });
+    else dispatch({ type: actionTypes.DISABLED, payload: { isDisabled: false } });
+  }, [error.name, input.name, actionTypes.DISABLED, dispatch]);
 
   const handleInputChange = event => {
     const { name, value } = event.target;
-    setError({ ...error, [name]: '' });
-    if (name === 'name' && value.length === 0)
-      setError({ ...error, name: 'Name is required' });
-    if (name === 'name' && value.length >= 30)
-      setError({ ...error, name: 'Must be less than 30 characters' });
-    setInput({ ...input, [name]: value });
-  };
 
-  const handleColorChange = ({ hex: color }) => {
-    setInput({ ...input, color });
+    dispatch({ type: actionTypes.ERROR, error: { field: name, message: '' } });
+
+    if (name === 'name' && value.length === 0)
+      dispatch({
+        type: actionTypes.ERROR,
+        error: { field: name, message: 'Name is required' }
+      });
+    if (name === 'name' && value.length >= 30)
+      dispatch({
+        type: actionTypes.ERROR,
+        error: { field: name, message: 'Must be less than 30 characters' }
+      });
+
+    dispatch({
+      type: actionTypes.SUCCESS,
+      payload: { field: name, value }
+    });
   };
 
   const handleSubmit = async () => {
@@ -45,20 +60,21 @@ export const ModalAddTab = ({ state }) => {
     handleReset();
   };
 
-  const handleReset = () => {
-    setInput(initialInput);
-    setError(initialError);
-    setHasError(true);
+  const handleColorChange = ({ hex: color }) => {
+    dispatch({
+      type: actionTypes.SUCCESS,
+      payload: { field: 'color', value: color }
+    });
   };
 
   return (
     <Modal
-      state={state}
-      title="Add New Tab"
+      state={modalState}
+      title="Add New Task"
       isForm={true}
       onSubmit={handleSubmit}
       onReset={handleReset}
-      hasError={hasError}
+      isDisabled={isDisabled}
     >
       <Input
         label="Tab Name"

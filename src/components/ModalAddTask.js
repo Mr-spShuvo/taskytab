@@ -1,8 +1,9 @@
 /* eslint-disable react/display-name */
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import dayjs from 'dayjs';
 
 import { Input, Modal, TextArea, Select } from '../common';
+import { useModalForm } from '../hooks';
 
 // Temp
 const inputTabs = [
@@ -10,62 +11,87 @@ const inputTabs = [
   { title: '👨‍💻 Coding', value: '4ce34efad4e5e' }
 ];
 
-const initialInput = {
-  title: '',
-  tabId: '4ce34efad4e5e',
-  description: '',
-  date: dayjs().format('YYYY-MM-DD'),
-  archived: false
+const initialState = {
+  input: {
+    title: '',
+    tabId: '4ce34efad4e5e',
+    description: '',
+    date: dayjs().format('YYYY-MM-DD'),
+    archived: false
+  },
+  error: { title: '', description: '', date: '' },
+  isDisabled: true
 };
 
-const initialError = { title: '', description: '', date: '' };
-
-export const ModalAddTask = ({ state }) => {
-  const [input, setInput] = useState(() => initialInput);
-  const [error, setError] = useState(() => initialError);
-  const [hasError, setHasError] = useState(true);
+export const ModalAddTask = ({ state: modalState }) => {
+  const { state, dispatch, actionTypes, handleReset } = useModalForm(initialState);
+  const { error, input, isDisabled } = state;
 
   useEffect(() => {
     if (error.description || error.title || error.date || !input.title)
-      setHasError(true);
-    else setHasError(false);
-  }, [error.description, error.title, error.date, input.title]);
+      dispatch({ type: actionTypes.DISABLED, payload: { isDisabled: true } });
+    else dispatch({ type: actionTypes.DISABLED, payload: { isDisabled: false } });
+  }, [
+    error.description,
+    error.title,
+    error.date,
+    input.title,
+    actionTypes.DISABLED,
+    dispatch
+  ]);
 
   const handleInputChange = event => {
     const { name, value } = event.target;
 
-    setError({ ...error, [name]: '' });
-    if (name === 'title' && value.length === 0)
-      setError({ ...error, title: 'Title is required' });
-    if (name === 'title' && value.length >= 60)
-      setError({ ...error, title: 'Must be less than 60 characters' });
-    if (name === 'description' && value.length > 140)
-      setError({ ...error, description: 'Cannot exceed more than 140 characters' });
-    if (name === 'date' && dayjs(value).valueOf() < dayjs().valueOf())
-      setError({ ...error, date: 'Cannot be previous date' });
+    dispatch({ type: actionTypes.ERROR, error: { field: name, message: '' } });
 
-    setInput({ ...input, [name]: value });
+    if (name === 'title' && value.length === 0)
+      dispatch({
+        type: actionTypes.ERROR,
+        error: { field: name, message: 'Title is required' }
+      });
+    if (name === 'title' && value.length >= 60)
+      dispatch({
+        type: actionTypes.ERROR,
+        error: { field: name, message: 'Must be less than 60 characters' }
+      });
+    if (name === 'description' && value.length > 140)
+      dispatch({
+        type: actionTypes.ERROR,
+        error: {
+          field: name,
+          message: 'Cannot exceed more than 140 characters'
+        }
+      });
+    if (name === 'date' && dayjs(value).add(1, 'day').valueOf() < dayjs().valueOf())
+      dispatch({
+        type: actionTypes.ERROR,
+        error: {
+          field: name,
+          message: 'Cannot be previous date'
+        }
+      });
+
+    dispatch({
+      type: actionTypes.SUCCESS,
+      payload: { field: name, value }
+    });
   };
 
   const handleSubmit = () => {
-    // API Call
+    // eslint-disable-next-line
+    console.log(state.input);
     handleReset();
-  };
-
-  const handleReset = () => {
-    setInput(initialInput);
-    setError(initialError);
-    setHasError(true);
   };
 
   return (
     <Modal
-      state={state}
+      state={modalState}
       title="Add New Task"
       isForm={true}
       onSubmit={handleSubmit}
       onReset={handleReset}
-      hasError={hasError}
+      isDisabled={isDisabled}
     >
       <Input
         label="Task Title"
