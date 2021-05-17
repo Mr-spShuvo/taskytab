@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { useContext } from 'react';
 import { SelectedTabContext } from '../contexts';
 
@@ -10,9 +11,12 @@ export const CollatedTab = ({ tab }) => {
   };
 
   return (
-    /* eslint-disable-next-line */
     <li className="sidebar__item" onClick={() => handleSelectTab(tab)}>
-      <a href="/" onClick={e => e.preventDefault()} className={`sidebar__link ${selectedTab.id === id && 'active'}`}>
+      <a
+        href="/"
+        onClick={e => e.preventDefault()}
+        className={`sidebar__link ${selectedTab.id === id && 'active'}`}
+      >
         <span className="sidebar__icon">
           <Icon />
         </span>

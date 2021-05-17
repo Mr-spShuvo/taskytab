@@ -1,12 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useContext } from 'react';
 
-import SidebarDivider from './SidebarDivider';
-import { CollatedTab } from '../common/';
-import { collatedTabs } from '../utils';
-
+import { TabsContext } from '../contexts';
 import { Tabs } from './Tabs';
+import { CollatedTabs } from './CollatedTabs';
+import SidebarDivider from './SidebarDivider';
 
 export const Sidebar = () => {
+  const [tabs, collatedTabs] = useContext(TabsContext);
   const [showTabs, setShowTabs] = useState(true);
 
   const handleShowTabs = () => {
@@ -15,13 +15,9 @@ export const Sidebar = () => {
 
   return (
     <div className="sidebar" data-testid="sidebar">
-      <ul className="sidebar__generic">
-        {collatedTabs.map(tab => (
-          <CollatedTab key={tab.id} tab={tab} />
-        ))}
-      </ul>
+      <CollatedTabs tabs={collatedTabs} />
       <SidebarDivider showTabs={showTabs} toggleTabs={handleShowTabs} />
-      {showTabs && <Tabs />}
+      {showTabs && <Tabs tabs={tabs} />}
     </div>
   );
 };
