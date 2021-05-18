@@ -1,116 +1,65 @@
-import React, { useContext, useEffect } from 'react';
-import { Input } from '../common';
-import { AuthContext } from '../contexts';
-import { useForm } from '../hooks';
+import React from 'react';
 
-const initialState = {
-  input: {
-    email: '',
-    password: ''
-  },
-  error: {
-    email: '',
-    password: ''
-  },
-  isDisabled: true
-};
+import githubIcon from '../assets/img/github-dark.png';
+import logo from '../assets/img/taskytab-colorlogo.svg';
+import heroLeft from '../assets/img/hero-left.png';
+import heroRight from '../assets/img/hero-right.png';
 
 const Login = () => {
-  const {
-    user,
-    signInWithEmailPassword,
-    signUpWithEmailPassword,
-    signInWithGoogle,
-    signInWithGithub,
-    signOut
-  } = useContext(AuthContext);
-
-  const { state, dispatch, actionTypes, handleReset } = useForm(initialState);
-  const { error, input, isDisabled } = state;
-
-  useEffect(() => {
-    if (error.email || error.password || !input.email || !input.password)
-      dispatch({ type: actionTypes.DISABLED, payload: { isDisabled: true } });
-    else dispatch({ type: actionTypes.DISABLED, payload: { isDisabled: false } });
-  }, [
-    error.email,
-    error.password,
-    input.email,
-    input.password,
-    actionTypes.DISABLED,
-    dispatch
-  ]);
-
-  const handleInputChange = event => {
-    const { name, value } = event.target;
-
-    dispatch({ type: actionTypes.ERROR, error: { field: name, message: '' } });
-
-    if (name === 'email' && value.length === 0)
-      dispatch({
-        type: actionTypes.ERROR,
-        error: { field: name, message: 'Email is required' }
-      });
-    if (name === 'password' && value.length === 0)
-      dispatch({
-        type: actionTypes.ERROR,
-        error: { field: name, message: 'Password must at least 6 characters' }
-      });
-
-    dispatch({
-      type: actionTypes.SUCCESS,
-      payload: { field: name, value }
-    });
-  };
-
-  const handleSubmit = async event => {
-    event.preventDefault();
-    if (input.email.length <= 3)
-      return dispatch({
-        type: actionTypes.ERROR,
-        error: { field: 'email', message: 'Invalid Email Address' }
-      });
-    if (input.password.length < 6)
-      return dispatch({
-        type: actionTypes.ERROR,
-        error: { field: 'password', message: 'Password must at least 6 characters' }
-      });
-    signInWithEmailPassword(input.email, input.password);
-    handleReset();
-  };
-
   return (
-    <>
-      <h1>Hello</h1>
-      <form onSubmit={handleSubmit} autoComplete="off ">
-        <Input
-          label="Email: "
-          type="email"
-          name="email"
-          error={error.email}
-          value={input.email}
-          onChange={handleInputChange}
-          placeholder="Email Address"
-        />
-        <Input
-          label="Password: "
-          type="password"
-          name="password"
-          error={error.password}
-          value={input.password}
-          onChange={handleInputChange}
-          placeholder="&bull;&bull;&bull;&bull;&bull;&bull;"
-        />
-        <button disabled={isDisabled}>Login</button>
-      </form>
-      <button onClick={signInWithGoogle}>Sign In with Google</button>
-      <button onClick={signInWithGithub}>Sign In with Github</button>
-      {user && (
-        <>
-          {user.email} <button onClick={signOut}>Sign Out</button>
-        </>
-      )}
-    </>
+    <div className="landingPage">
+      <div className="landingPage__overlay">
+        <div className="landingPage__content">
+          <div className="landingPage__logo">
+            <img src={logo} alt="Taskytab Logo" />
+            <h1>TASKYTAB</h1>
+            <h3>Do More, Do Better</h3>
+          </div>
+          <div className="landingPage__form">
+            <div className="landingPage__tabs">
+              <button className="btn btn--lg active">Login</button>
+              <button className="btn btn--lg">Signup</button>
+            </div>
+          </div>
+          <div className="landingPage__footer">
+            <a
+              href="https://github.com/Mr-spShuvo/taskytab"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <img src={githubIcon} alt="github" title="Taskytab Github" />
+            </a>
+            <p>
+              Made with React + Firebase
+              <br />
+              &copy;&nbsp;
+              <a href="https://spshuvo.com" target="_blank" rel="noreferrer">
+                Mr.spShuvo
+              </a>
+              . Available on{' '}
+              <a
+                href="https://github.com/Mr-spShuvo/taskytab"
+                target="_blank"
+                rel="noreferrer"
+              >
+                Github
+              </a>
+              .
+            </p>
+          </div>
+          <img
+            src={heroLeft}
+            alt="Landing Page Hero"
+            className="landingPage__hero landingPage__hero--left"
+          />
+          <img
+            src={heroRight}
+            alt="Landing Page Hero"
+            className="landingPage__hero landingPage__hero--right"
+          />
+        </div>
+      </div>
+    </div>
   );
 };
 

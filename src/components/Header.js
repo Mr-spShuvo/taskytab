@@ -59,11 +59,11 @@ export const Header = () => {
               </li>
               <li className="options__item active">
                 {!user ? (
-                  <button onClick={signInWithGoogle}>
+                  <button className="btn" onClick={signInWithGoogle}>
                     <MdAccountCircle />
                   </button>
                 ) : (
-                  <button onClick={signOut}>
+                  <button className="btn" onClick={signOut}>
                     <MdComputer />
                   </button>
                 )}
