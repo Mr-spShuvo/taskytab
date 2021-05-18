@@ -28,6 +28,12 @@ const reducer = (state, action) => {
   }
 };
 
+/**
+ * Custom hooks to handle form in Modal based on useReducer
+ * @param {string} userId - Id of currently logged in user
+ * @returns {object} A object of state[], dispatch(fn), actionTypes{} and handleReset(fn)
+ */
+
 export const useModalForm = initialState => {
   const [state, dispatch] = useReducer(reducer, initialState);
 

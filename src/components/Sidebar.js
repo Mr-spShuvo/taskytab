@@ -1,13 +1,14 @@
-import React, { useState, useContext } from 'react';
+import React, { useContext } from 'react';
 
 import { TabsContext } from '../contexts';
 import { Tabs } from './Tabs';
 import { CollatedTabs } from './CollatedTabs';
 import SidebarDivider from './SidebarDivider';
+import { useLocalStorage } from '../hooks/useLocalStorage';
 
 export const Sidebar = () => {
   const [tabs, collatedTabs] = useContext(TabsContext);
-  const [showTabs, setShowTabs] = useState(true);
+  const [showTabs, setShowTabs] = useLocalStorage('taskytab-showTabs', true);
 
   const handleShowTabs = () => {
     setShowTabs(!showTabs);

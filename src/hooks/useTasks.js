@@ -1,5 +1,4 @@
 import { useContext, useEffect, useState } from 'react';
-
 import dayjs from 'dayjs';
 
 import { db } from '../firebase';
@@ -8,9 +7,8 @@ import { SelectedTabContext, TabsContext } from '../contexts';
 
 /**
  * Custom hooks to retrieves the list of Tasks based on selected tab from server
- * @param {string} selectedTabId - Currently selected tab (E.g. 'INBOX', 'WEEK' or Others)
  * @param {string} userId - Id of currently logged in user
- * @returns {object} A object of tasks and archived tasks
+ * @returns {object} A object of tasks[] and archivedTasks[]
  */
 
 export const useTasks = (userId = 'xlipTsb3Pd33p0kmqXSN') => {
@@ -58,10 +56,10 @@ export const useTasks = (userId = 'xlipTsb3Pd33p0kmqXSN') => {
   }, [
     selectedTab,
     userId,
-    TODAY_TAB,
-    INBOX_TAB,
-    WEEK_TAB,
-    ARCHIVED_TAB,
+    TODAY_TAB.id,
+    INBOX_TAB.id,
+    WEEK_TAB.id,
+    ARCHIVED_TAB.id,
     collatedTabs,
     tabs
   ]);

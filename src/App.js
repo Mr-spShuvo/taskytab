@@ -1,8 +1,10 @@
-import React, { useContext, useEffect } from 'react';
+import React, { Suspense, useContext, useEffect } from 'react';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+
 import './styles/App.scss';
 
-import { Header } from './components';
-import { Content } from './components';
+import { Home } from './pages';
+import { Loading } from './common';
 import { SelectedTabProvider, TabsProvider, ThemeContext } from './contexts';
 
 export const App = () => {
@@ -13,11 +15,18 @@ export const App = () => {
       : document.body.classList.remove('dark');
   }, [theme]);
   return (
-    <TabsProvider>
-      <SelectedTabProvider>
-        <Header />
-        <Content />
-      </SelectedTabProvider>
-    </TabsProvider>
+    <Router>
+      <TabsProvider>
+        <SelectedTabProvider>
+          <Suspense fallback={<Loading />}>
+            <Switch>
+              <Route path="/">
+                <Home />
+              </Route>
+            </Switch>
+          </Suspense>
+        </SelectedTabProvider>
+      </TabsProvider>
+    </Router>
   );
 };

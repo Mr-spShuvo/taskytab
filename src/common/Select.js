@@ -19,9 +19,10 @@ export const Select = ({
         name={name}
         id={name}
         onBlur={onChange}
+        defaultValue={defaultValue}
       >
         {options.map(({ title, value }) => (
-          <option key={value} value={value} defaultValue={defaultValue === value}>
+          <option key={value} value={value}>
             {title}
           </option>
         ))}
@@ -37,8 +38,8 @@ Select.propTypes = {
   defaultValue: PropTypes.string,
   options: PropTypes.arrayOf(
     PropTypes.shape({
-      title: PropTypes.string.isRequired,
-      value: PropTypes.string.isRequired
+      title: PropTypes.string,
+      value: PropTypes.string
     })
   ).isRequired,
   error: PropTypes.string

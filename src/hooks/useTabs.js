@@ -6,7 +6,7 @@ import { getDocsWithId } from '../utils';
 /**
  * Custom hooks to retrieves the list of Tabs from server
  * @param {string} userId - Id of current logged in user
- * @returns {array} A array of tabs and updater function for tabs
+ * @returns {array} A array of tabs[] and the inboxTab{}
  */
 
 export const useTabs = (userId = 'xlipTsb3Pd33p0kmqXSN') => {

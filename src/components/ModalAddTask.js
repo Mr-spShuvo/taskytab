@@ -1,15 +1,11 @@
 /* eslint-disable react/display-name */
-import React, { useEffect } from 'react';
+import React, { useContext, useEffect } from 'react';
 import dayjs from 'dayjs';
 
 import { Input, Modal, TextArea, Select } from '../common';
-import { useModalForm } from '../hooks';
-
-// Temp
-const inputTabs = [
-  { title: '👨‍🍳 Cooking', value: '4ce34ceDfliE45e' },
-  { title: '👨‍💻 Coding', value: '4ce34efad4e5e' }
-];
+import { useModalForm, useTabs } from '../hooks';
+import { SelectedTabContext } from '../contexts';
+import { db } from '../firebase';
 
 const initialState = {
   input: {
@@ -26,6 +22,20 @@ const initialState = {
 export const ModalAddTask = ({ state: modalState }) => {
   const { state, dispatch, actionTypes, handleReset } = useModalForm(initialState);
   const { error, input, isDisabled } = state;
+  const [selectedTab, setSelectedTab] = useContext(SelectedTabContext);
+  const [tabs, inboxTab] = useTabs();
+  const allTabs = [inboxTab, ...tabs];
+  const inputTabs = allTabs.map(tab => ({
+    title: tab.name,
+    value: tab.id
+  }));
+
+  useEffect(() => {
+    dispatch({
+      type: actionTypes.SUCCESS,
+      payload: { field: 'tabId', value: selectedTab.id }
+    });
+  }, [selectedTab.id, actionTypes.SUCCESS, dispatch]);
 
   useEffect(() => {
     if (error.description || error.title || error.date || !input.title)
@@ -78,9 +88,14 @@ export const ModalAddTask = ({ state: modalState }) => {
     });
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     // eslint-disable-next-line
-    console.log(state.input);
+    const userId = 'xlipTsb3Pd33p0kmqXSN';
+    db.collection('tasks').add({ ...state.input, userId });
+    if (selectedTab.id !== state.input.tabId) {
+      const [tab] = allTabs.filter(tab => tab.id === state.input.tabId);
+      setSelectedTab(tab);
+    }
     handleReset();
   };
 
