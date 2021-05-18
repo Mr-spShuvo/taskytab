@@ -23,7 +23,7 @@ export const Input = ({
         placeholder={placeholder}
         value={value}
         onChange={onChange}
-        autoComplete="off"
+        autoComplete="new-password"
       />
 
       {error && <small className="form__error">{error}</small>}

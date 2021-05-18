@@ -1,6 +1,7 @@
 import firebase from 'firebase/app';
 import 'firebase/firestore';
 import 'firebase/analytics';
+import 'firebase/auth';
 
 const firebaseConfig = {
   apiKey: 'AIzaSyBNdDWEUljCI-kBWLSqBw3AHI0ZzFkcK6g',
@@ -16,10 +17,12 @@ const firebaseConfig = {
 // Initialize Firebase
 firebase.initializeApp(firebaseConfig);
 firebase.analytics();
-
 const db = firebase.firestore();
+const auth = firebase.auth();
+const providerGoogle = new firebase.auth.GoogleAuthProvider();
+const providerGithub = new firebase.auth.GithubAuthProvider();
 
-export { db };
+export { db, auth, providerGoogle, providerGithub };
 
 // For Testing Purpose
 window.firebase = process.env.NODE_ENV === 'development' ? firebase : undefined;

@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useContext, useEffect, useState } from 'react';
+import { AuthContext } from '../contexts';
 
 import { db } from '../firebase';
 import { getDocsWithId } from '../utils';
@@ -9,9 +10,12 @@ import { getDocsWithId } from '../utils';
  * @returns {array} A array of tabs[] and the inboxTab{}
  */
 
-export const useTabs = (userId = 'xlipTsb3Pd33p0kmqXSN') => {
+export const useTabs = () => {
+  const { user } = useContext(AuthContext);
   const [tabs, setTabs] = useState([]);
   const [inboxTab, setInboxTab] = useState({});
+
+  const userId = user?.id || '';
 
   useEffect(() => {
     const query = db.collection('tabs').where('userId', '==', userId);

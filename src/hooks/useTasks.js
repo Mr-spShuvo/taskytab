@@ -3,7 +3,7 @@ import dayjs from 'dayjs';
 
 import { db } from '../firebase';
 import { getDocsWithId } from '../utils';
-import { SelectedTabContext, TabsContext } from '../contexts';
+import { AuthContext, SelectedTabContext, TabsContext } from '../contexts';
 
 /**
  * Custom hooks to retrieves the list of Tasks based on selected tab from server
@@ -11,12 +11,14 @@ import { SelectedTabContext, TabsContext } from '../contexts';
  * @returns {object} A object of tasks[] and archivedTasks[]
  */
 
-export const useTasks = (userId = 'xlipTsb3Pd33p0kmqXSN') => {
+export const useTasks = () => {
   const [tasks, setTasks] = useState([]);
   const [archivedTasks, setArchivedTasks] = useState([]);
   const [tabs, collatedTabs] = useContext(TabsContext);
   const [selectedTab] = useContext(SelectedTabContext);
   const [INBOX_TAB, TODAY_TAB, WEEK_TAB, ARCHIVED_TAB] = collatedTabs;
+  const { user } = useContext(AuthContext);
+  const userId = user?.id || '';
 
   useEffect(() => {
     // Initiate Query on `tasks` collections

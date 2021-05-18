@@ -34,7 +34,7 @@ const reducer = (state, action) => {
  * @returns {object} A object of state[], dispatch(fn), actionTypes{} and handleReset(fn)
  */
 
-export const useModalForm = initialState => {
+export const useForm = initialState => {
   const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {

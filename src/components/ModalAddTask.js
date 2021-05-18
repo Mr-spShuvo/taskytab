@@ -3,14 +3,14 @@ import React, { useContext, useEffect } from 'react';
 import dayjs from 'dayjs';
 
 import { Input, Modal, TextArea, Select } from '../common';
-import { useModalForm, useTabs } from '../hooks';
-import { SelectedTabContext } from '../contexts';
+import { useForm, useTabs } from '../hooks';
+import { AuthContext, SelectedTabContext } from '../contexts';
 import { db } from '../firebase';
 
 const initialState = {
   input: {
     title: '',
-    tabId: '4ce34efad4e5e',
+    tabId: '',
     description: '',
     date: dayjs().format('YYYY-MM-DD'),
     archived: false
@@ -20,14 +20,15 @@ const initialState = {
 };
 
 export const ModalAddTask = ({ state: modalState }) => {
-  const { state, dispatch, actionTypes, handleReset } = useModalForm(initialState);
+  const { user } = useContext(AuthContext);
+  const { state, dispatch, actionTypes, handleReset } = useForm(initialState);
   const { error, input, isDisabled } = state;
   const [selectedTab, setSelectedTab] = useContext(SelectedTabContext);
   const [tabs, inboxTab] = useTabs();
   const allTabs = [inboxTab, ...tabs];
   const inputTabs = allTabs.map(tab => ({
-    title: tab.name,
-    value: tab.id
+    title: tab?.name,
+    value: tab?.id
   }));
 
   useEffect(() => {
@@ -88,10 +89,8 @@ export const ModalAddTask = ({ state: modalState }) => {
     });
   };
 
-  const handleSubmit = async () => {
-    // eslint-disable-next-line
-    const userId = 'xlipTsb3Pd33p0kmqXSN';
-    db.collection('tasks').add({ ...state.input, userId });
+  const handleSubmit = () => {
+    db.collection('tasks').add({ ...state.input, userId: user.id });
     if (selectedTab.id !== state.input.tabId) {
       const [tab] = allTabs.filter(tab => tab.id === state.input.tabId);
       setSelectedTab(tab);

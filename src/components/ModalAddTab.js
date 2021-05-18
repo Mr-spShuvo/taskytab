@@ -5,9 +5,9 @@ import { FaCircle } from 'react-icons/fa';
 
 import { db } from '../firebase';
 import { Input, Modal } from '../common';
-import { useModalForm } from '../hooks';
+import { useForm } from '../hooks';
 import { getDocsWithId } from '../utils';
-import { SelectedTabContext } from '../contexts';
+import { AuthContext, SelectedTabContext } from '../contexts';
 
 const initialState = {
   input: {
@@ -19,8 +19,9 @@ const initialState = {
 };
 
 export const ModalAddTab = ({ state: modalState }) => {
+  const { user } = useContext(AuthContext);
   const setSelectedTab = useContext(SelectedTabContext)[1];
-  const { state, dispatch, actionTypes, handleReset } = useModalForm(initialState);
+  const { state, dispatch, actionTypes, handleReset } = useForm(initialState);
   const { error, input, isDisabled } = state;
 
   useEffect(() => {
@@ -52,8 +53,7 @@ export const ModalAddTab = ({ state: modalState }) => {
   };
 
   const handleSubmit = async () => {
-    const userId = 'xlipTsb3Pd33p0kmqXSN';
-    const tabRef = await db.collection('tabs').add({ ...input, userId });
+    const tabRef = await db.collection('tabs').add({ ...input, userId: user.id });
     const tab = await tabRef.get();
     const newTab = getDocsWithId(tab);
     setSelectedTab(newTab);

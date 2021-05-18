@@ -1,6 +1,6 @@
 import { MdEvent, MdEventNote, MdInbox, MdArchive } from 'react-icons/md';
 
-export const INBOX_TAB = { id: 's', name: 'Inbox', icon: MdInbox };
+export const INBOX_TAB = { id: '', name: 'Inbox', icon: MdInbox };
 export const TODAY_TAB = { id: 'TODAY', name: 'Today', icon: MdEvent };
 export const WEEK_TAB = { id: 'WEEK', name: 'This Week', icon: MdEventNote };
 export const ARCHIVED_TAB = { id: 'ARCHIVED', name: 'Archived', icon: MdArchive };
