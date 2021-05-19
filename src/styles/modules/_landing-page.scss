@@ -12,7 +12,6 @@
     min-height: 88vh;
     background: var(--color-bg);
     border: 3px solid var(--color-light);
-    box-shadow: 1px 1px 3px #00000010;
   }
 
   &__logo {
@@ -45,25 +44,62 @@
     margin-top: 5rem;
     margin-bottom: 2rem;
     background: var(--color-white);
-    width: 40%;
+    width: 42%;
     height: 46rem;
-    padding: 3%;
+    padding: 2% 3%;
     border-radius: 1rem;
     border: 2px solid var(--color-light);
-    // box-shadow: 1px 1px 9px #00000010;
+    box-shadow: -1px -1px 9px #00000015;
+
+    & form {
+      text-align: left;
+      margin: 3rem;
+    }
   }
 
   &__tabs {
     text-align: center;
     margin: 0 auto;
-    .btn {
+    & > .btn {
       width: 30%;
       border-radius: 0;
       border-bottom: 3px solid var(--color-gray-light);
     }
-    .active {
+    & > .active {
       border-bottom: 3px solid var(--color-main);
     }
+  }
+
+  &__social {
+    position: relative;
+    margin: 0 3rem;
+    padding-top: 3rem;
+    border-top: 2px solid var(--color-light);
+    display: flex;
+    justify-content: space-between;
+
+    & button {
+      width: 48%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    & img {
+      width: 2rem;
+      height: 2rem;
+    }
+  }
+
+  &__socialTitle {
+    font-weight: var(--font-bold);
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    top: -0.8rem;
+    background-color: var(--color-white);
+    padding: 0 1.5rem;
   }
 
   &__footer {
@@ -87,6 +123,7 @@
     position: absolute;
     height: 52rem;
     bottom: -2px;
+    opacity: 0.85;
 
     &--left {
       left: 15%;

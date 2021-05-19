@@ -1,11 +1,17 @@
-import React from 'react';
+import React, { useContext, useState } from 'react';
 
 import githubIcon from '../assets/img/github-dark.png';
+import googleIcon from '../assets/img/google.svg';
 import logo from '../assets/img/taskytab-colorlogo.svg';
 import heroLeft from '../assets/img/hero-left.png';
 import heroRight from '../assets/img/hero-right.png';
+import { AuthForm } from '../components';
+import { AuthContext } from '../contexts';
 
-const Login = () => {
+const LandingPage = () => {
+  const [formType, setFormType] = useState('login');
+  const { signInWithGoogle, signInWithGithub } = useContext(AuthContext);
+
   return (
     <div className="landingPage">
       <div className="landingPage__overlay">
@@ -17,8 +23,36 @@ const Login = () => {
           </div>
           <div className="landingPage__form">
             <div className="landingPage__tabs">
-              <button className="btn btn--lg active">Login</button>
-              <button className="btn btn--lg">Signup</button>
+              <button
+                className={`btn btn--lg ${formType === 'login' ? 'active' : ''}`}
+                onClick={() => setFormType('login')}
+              >
+                Login
+              </button>
+              <button
+                className={`btn btn--lg ${formType === 'signup' ? 'active' : ''}`}
+                onClick={() => setFormType('signup')}
+              >
+                Signup
+              </button>
+              <AuthForm formType={formType} />
+              <div className="landingPage__social">
+                <span className="landingPage__socialTitle">Or Continue Using </span>
+                <button
+                  className="btn btn--lg btn--neutral"
+                  onClick={signInWithGoogle}
+                >
+                  <img src={googleIcon} alt="google" />
+                  Google
+                </button>
+                <button
+                  className="btn btn--lg btn--neutral"
+                  onClick={signInWithGithub}
+                >
+                  <img src={githubIcon} alt="github" />
+                  Github
+                </button>
+              </div>
             </div>
           </div>
           <div className="landingPage__footer">
@@ -36,7 +70,7 @@ const Login = () => {
               <a href="https://spshuvo.com" target="_blank" rel="noreferrer">
                 Mr.spShuvo
               </a>
-              . Available on{' '}
+              . Available on &nbsp;
               <a
                 href="https://github.com/Mr-spShuvo/taskytab"
                 target="_blank"
@@ -63,4 +97,4 @@ const Login = () => {
   );
 };
 
-export default Login;
+export default LandingPage;

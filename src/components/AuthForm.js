@@ -1,4 +1,6 @@
 import React, { useContext, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+
 import { Input } from '../common';
 import { AuthContext } from '../contexts';
 import { useForm } from '../hooks';
@@ -15,15 +17,10 @@ const initialState = {
   isDisabled: true
 };
 
-const Login = () => {
-  const {
-    user,
-    signInWithEmailPassword,
-    signUpWithEmailPassword,
-    signInWithGoogle,
-    signInWithGithub,
-    signOut
-  } = useContext(AuthContext);
+export const AuthForm = ({ formType = 'login' }) => {
+  const { signInWithEmailPassword, signUpWithEmailPassword } = useContext(
+    AuthContext
+  );
 
   const { state, dispatch, actionTypes, handleReset } = useForm(initialState);
   const { error, input, isDisabled } = state;
@@ -75,13 +72,14 @@ const Login = () => {
         type: actionTypes.ERROR,
         error: { field: 'password', message: 'Password must at least 6 characters' }
       });
-    signInWithEmailPassword(input.email, input.password);
+    formType === 'login'
+      ? signInWithEmailPassword(input.email, input.password)
+      : signUpWithEmailPassword(input.email, input.password);
     handleReset();
   };
 
   return (
     <>
-      <h1>Hello</h1>
       <form onSubmit={handleSubmit} autoComplete="off ">
         <Input
           label="Email: "
@@ -101,17 +99,21 @@ const Login = () => {
           onChange={handleInputChange}
           placeholder="&bull;&bull;&bull;&bull;&bull;&bull;"
         />
-        <button disabled={isDisabled}>Login</button>
+        <div className="form__group" style={{ alignItems: 'center' }}>
+          <button
+            type="submit"
+            className="btn btn--main btn--lg"
+            disabled={isDisabled}
+          >
+            {formType === 'login' ? 'Log In' : 'Sign Up'}
+          </button>
+          {formType === 'login' && (
+            <Link className="active" to="/">
+              Forget Password?
+            </Link>
+          )}
+        </div>
       </form>
-      <button onClick={signInWithGoogle}>Sign In with Google</button>
-      <button onClick={signInWithGithub}>Sign In with Github</button>
-      {user && (
-        <>
-          {user.email} <button onClick={signOut}>Sign Out</button>
-        </>
-      )}
     </>
   );
 };
-
-export default Login;

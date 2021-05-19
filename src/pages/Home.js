@@ -1,12 +1,12 @@
 import React, { useContext } from 'react';
 import { Content, Header } from '../components';
 import { AuthContext } from '../contexts';
-import Login from './Login';
+const LandingPage = React.lazy(() => import('./LandingPage'));
 
 const Home = () => {
   const { user } = useContext(AuthContext);
   return !user ? (
-    <Login />
+    <LandingPage />
   ) : (
     <>
       <Header />
