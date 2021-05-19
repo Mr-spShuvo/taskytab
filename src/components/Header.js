@@ -5,6 +5,7 @@ import {
   MdBrightness3,
   MdBrightness7,
   MdComputer,
+  MdPower,
   MdSearch
 } from 'react-icons/md';
 import { GoPlus } from 'react-icons/go';
@@ -12,17 +13,19 @@ import { GoPlus } from 'react-icons/go';
 import logo from '../assets/img/taskytab-logo.svg';
 
 import { ModalAddTask } from './ModalAddTask';
-import { AuthContext, ThemeContext } from '../contexts';
+import { AuthContext, SelectedTabContext, ThemeContext } from '../contexts';
 
 export const Header = () => {
   const [isModalOpen, setModalOpen] = useState(false);
   const [darkMode, setDarkMode] = useContext(ThemeContext);
   const { user, signInWithGoogle, signOut } = useContext(AuthContext);
 
-  console.log(user);
-
   const handleAddTask = () => {
     setModalOpen(true);
+  };
+
+  const handleSignOut = () => {
+    signOut();
   };
 
   return (
@@ -63,8 +66,8 @@ export const Header = () => {
                     <MdAccountCircle />
                   </button>
                 ) : (
-                  <button className="btn" onClick={signOut}>
-                    <MdComputer />
+                  <button className="btn">
+                    <MdPower onClick={handleSignOut} />
                   </button>
                 )}
               </li>

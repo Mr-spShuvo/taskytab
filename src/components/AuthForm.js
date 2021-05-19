@@ -1,7 +1,7 @@
-import React, { useContext, useEffect } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
-import { Input } from '../common';
+import { Input, Loading } from '../common';
 import { AuthContext } from '../contexts';
 import { useForm } from '../hooks';
 
@@ -18,6 +18,7 @@ const initialState = {
 };
 
 export const AuthForm = ({ formType = 'login' }) => {
+  const [isLoading, setIsLoading] = useState(false);
   const { signInWithEmailPassword, signUpWithEmailPassword } = useContext(
     AuthContext
   );
@@ -62,6 +63,7 @@ export const AuthForm = ({ formType = 'login' }) => {
 
   const handleSubmit = async event => {
     event.preventDefault();
+    setIsLoading(true);
     if (input.email.length <= 3)
       return dispatch({
         type: actionTypes.ERROR,
@@ -78,7 +80,9 @@ export const AuthForm = ({ formType = 'login' }) => {
     handleReset();
   };
 
-  return (
+  return isLoading ? (
+    <Loading />
+  ) : (
     <>
       <form onSubmit={handleSubmit} autoComplete="off ">
         <Input

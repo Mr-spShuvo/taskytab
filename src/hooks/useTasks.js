@@ -37,7 +37,7 @@ export const useTasks = () => {
       query = query.orderBy('date').startAt(startAt).endAt(endAt);
     } else if (selectedTab.id === ARCHIVED_TAB?.id)
       query = query.where('archived', '==', true);
-    else query = query.where('tabId', '==', selectedTab.id);
+    else query = query.where('tabId', '==', selectedTab?.id || '');
 
     const unsubscribe = query.onSnapshot(snapshot => {
       // Retrieving list of tasks depend on selected tab
@@ -56,8 +56,8 @@ export const useTasks = () => {
 
     return () => unsubscribe();
   }, [
-    selectedTab,
     userId,
+    selectedTab.id,
     TODAY_TAB.id,
     INBOX_TAB.id,
     WEEK_TAB.id,

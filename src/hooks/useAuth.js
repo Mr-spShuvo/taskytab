@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { auth, db, providerGithub, providerGoogle } from '../firebase';
 import { getDocsWithId } from '../utils';
 
-const useAuth = () => {
+export const useAuth = () => {
   const [user, setUser] = useState(null);
 
   const handleUser = async (user, additionalData) => {
@@ -67,5 +67,3 @@ const useAuth = () => {
     confirmPasswordReset
   };
 };
-
-export default useAuth;
