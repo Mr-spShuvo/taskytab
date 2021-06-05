@@ -34,9 +34,9 @@ export const ModalAddTask = ({ state: modalState }) => {
   useEffect(() => {
     dispatch({
       type: actionTypes.SUCCESS,
-      payload: { field: 'tabId', value: selectedTab.id }
+      payload: { field: 'tabId', value: selectedTab?.id }
     });
-  }, [selectedTab.id, actionTypes.SUCCESS, dispatch]);
+  }, [selectedTab, actionTypes.SUCCESS, dispatch]);
 
   useEffect(() => {
     if (error.description || error.title || error.date || !input.title)
@@ -90,7 +90,11 @@ export const ModalAddTask = ({ state: modalState }) => {
   };
 
   const handleSubmit = () => {
-    db.collection('tasks').add({ ...state.input, userId: user.id });
+    db.collection('tasks').add({
+      ...state.input,
+      date: new Date(state.input.date),
+      userId: user.id
+    });
     if (selectedTab.id !== state.input.tabId) {
       const [tab] = allTabs.filter(tab => tab.id === state.input.tabId);
       setSelectedTab(tab);

@@ -1,9 +1,9 @@
 import React, { Suspense, useContext, useEffect } from 'react';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
 
 import './styles/App.scss';
 
-import { Home } from './pages';
+import { AuthPage, Home } from './pages';
 import { Loading } from './common';
 import {
   AuthProvider,
@@ -11,6 +11,7 @@ import {
   TabsProvider,
   ThemeContext
 } from './contexts';
+import { AppRoute } from './utils';
 
 export const App = () => {
   const [theme] = useContext(ThemeContext);
@@ -27,9 +28,15 @@ export const App = () => {
           <SelectedTabProvider>
             <Suspense fallback={<Loading />}>
               <Switch>
-                <Route path="/">
+                <AppRoute exact path="/">
                   <Home />
+                </AppRoute>
+                <Route path="/auth">
+                  <AuthPage />
                 </Route>
+                <AppRoute path="/inbox">
+                  <h3>Inbox</h3>
+                </AppRoute>
               </Switch>
             </Suspense>
           </SelectedTabProvider>

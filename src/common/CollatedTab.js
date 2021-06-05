@@ -15,7 +15,7 @@ export const CollatedTab = ({ tab }) => {
       <a
         href="/"
         onClick={e => e.preventDefault()}
-        className={`sidebar__link ${selectedTab.id === id && 'active'}`}
+        className={`sidebar__link ${selectedTab?.id === id && 'active'}`}
       >
         <span className="sidebar__icon">
           <Icon />

@@ -7,10 +7,14 @@ import heroLeft from '../assets/img/hero-left.png';
 import heroRight from '../assets/img/hero-right.png';
 import { AuthForm } from '../components';
 import { AuthContext } from '../contexts';
+import { Redirect, useLocation } from 'react-router';
 
-const LandingPage = () => {
+const AuthPage = () => {
   const [formType, setFormType] = useState('login');
   const { signInWithGoogle, signInWithGithub } = useContext(AuthContext);
+  const { state } = useLocation();
+  const { user } = useContext(AuthContext);
+  if (user) return <Redirect to={state.from} />;
 
   return (
     <div className="landingPage">
@@ -59,22 +63,26 @@ const LandingPage = () => {
             <a
               href="https://github.com/Mr-spShuvo/taskytab"
               target="_blank"
-              rel="noreferrer"
+              rel="noopener noreferrer"
             >
               <img src={githubIcon} alt="github" title="Taskytab Github" />
             </a>
             <p>
-              Made with React + Firebase
+              Made with React + Firebase and Coffee
               <br />
               &copy;&nbsp;
-              <a href="https://spshuvo.com" target="_blank" rel="noreferrer">
+              <a
+                href="https://spshuvo.com"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 Mr.spShuvo
               </a>
-              . Available on &nbsp;
+              . Also, Available on&nbsp;
               <a
                 href="https://github.com/Mr-spShuvo/taskytab"
                 target="_blank"
-                rel="noreferrer"
+                rel="noopener noreferrer"
               >
                 Github
               </a>
@@ -97,4 +105,4 @@ const LandingPage = () => {
   );
 };
 
-export default LandingPage;
+export default AuthPage;

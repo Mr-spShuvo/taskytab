@@ -27,21 +27,22 @@ export const useTasks = () => {
 
     // Queries
     const startAt = new Date(dayjs().startOf('day').valueOf());
-    if (selectedTab.id === INBOX_TAB?.id)
+    if (selectedTab?.id === INBOX_TAB?.id)
       query = query.where('tabId', '==', INBOX_TAB.id);
-    else if (selectedTab.id === TODAY_TAB?.id) {
+    else if (selectedTab?.id === TODAY_TAB?.id) {
       const endAt = new Date(dayjs().endOf('day').valueOf());
       query = query.orderBy('date').startAt(startAt).endAt(endAt);
-    } else if (selectedTab.id === WEEK_TAB?.id) {
+    } else if (selectedTab?.id === WEEK_TAB?.id) {
       const endAt = new Date(dayjs().endOf('day').add('6', 'days').valueOf());
       query = query.orderBy('date').startAt(startAt).endAt(endAt);
-    } else if (selectedTab.id === ARCHIVED_TAB?.id)
+    } else if (selectedTab?.id === ARCHIVED_TAB?.id)
       query = query.where('archived', '==', true);
     else query = query.where('tabId', '==', selectedTab?.id || '');
 
     const unsubscribe = query.onSnapshot(snapshot => {
       // Retrieving list of tasks depend on selected tab
       const tasks = snapshot.docs.map(getDocsWithId);
+      console.log(tasks);
 
       if (selectedTab.id === ARCHIVED_TAB?.id) return setTasks(tasks);
 

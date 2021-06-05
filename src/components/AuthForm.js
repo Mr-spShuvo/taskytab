@@ -63,7 +63,6 @@ export const AuthForm = ({ formType = 'login' }) => {
 
   const handleSubmit = async event => {
     event.preventDefault();
-    setIsLoading(true);
     if (input.email.length <= 3)
       return dispatch({
         type: actionTypes.ERROR,
@@ -77,6 +76,8 @@ export const AuthForm = ({ formType = 'login' }) => {
     formType === 'login'
       ? signInWithEmailPassword(input.email, input.password)
       : signUpWithEmailPassword(input.email, input.password);
+
+    setIsLoading(true);
     handleReset();
   };
 

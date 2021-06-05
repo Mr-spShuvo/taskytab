@@ -8,7 +8,7 @@ import dayjs from 'dayjs';
 export const Task = ({ task }) => {
   const { id, title, description, tabName, archived, date } = task;
   let taskDate;
-  if (date) taskDate = dayjs(date).format('MMM DD, YYYY');
+  if (date) taskDate = dayjs(date.toDate()).format('MMM DD, YYYY');
   return (
     <li className="tasks__item" key={id} onClick={() => {}}>
       <div className="tasks__item-left">
