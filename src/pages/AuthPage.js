@@ -11,9 +11,9 @@ import { Redirect, useLocation } from 'react-router';
 
 const AuthPage = () => {
   const [formType, setFormType] = useState('login');
-  const { signInWithGoogle, signInWithGithub } = useContext(AuthContext);
+  const { user, signInWithGoogle, signInWithGithub } = useContext(AuthContext);
+
   const { state } = useLocation();
-  const { user } = useContext(AuthContext);
   if (user) return <Redirect to={state.from} />;
 
   return (

@@ -1,9 +1,8 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import { Input, Loading } from '../common';
-import { AuthContext } from '../contexts';
-import { useForm } from '../hooks';
+import { useAuth, useForm } from '../hooks';
 
 const initialState = {
   input: {
@@ -19,9 +18,7 @@ const initialState = {
 
 export const AuthForm = ({ formType = 'login' }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const { signInWithEmailPassword, signUpWithEmailPassword } = useContext(
-    AuthContext
-  );
+  const { signInWithEmailPassword, signUpWithEmailPassword } = useAuth();
 
   const { state, dispatch, actionTypes, handleReset } = useForm(initialState);
   const { error, input, isDisabled } = state;

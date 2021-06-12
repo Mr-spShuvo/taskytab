@@ -31,12 +31,12 @@ export const App = () => {
                 <AppRoute exact path="/">
                   <Home />
                 </AppRoute>
-                <Route path="/auth">
-                  <AuthPage />
-                </Route>
                 <AppRoute path="/inbox">
                   <h3>Inbox</h3>
                 </AppRoute>
+                <Route path="/login">
+                  <AuthPage />
+                </Route>
               </Switch>
             </Suspense>
           </SelectedTabProvider>
