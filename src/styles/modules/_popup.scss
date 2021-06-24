@@ -1,0 +1,40 @@
+.popup {
+  position: absolute;
+  z-index: 111;
+
+  &__menu {
+    margin-top: 1rem;
+    border-radius: 0.5rem;
+    padding: 1rem 2rem;
+    box-shadow: var(--generic-box-shadow);
+    background-color: var(--color-white);
+    list-style: none;
+    margin-right: auto;
+  }
+
+  &__item {
+    padding: 1rem 0;
+
+    &:not(:last-child) {
+      border-bottom: var(--generic-border);
+    }
+
+    & > button {
+      text-align: left;
+      width: 15rem;
+      background: transparent;
+      border: none;
+      outline-color: transparent;
+      display: flex;
+      align-items: center;
+      font-weight: var(--font-medium);
+      color: var(--color-text);
+    }
+  }
+}
+
+.dark .popup {
+  &__menu {
+    background-color: var(--color-light);
+  }
+}

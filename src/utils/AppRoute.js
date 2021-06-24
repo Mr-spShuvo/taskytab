@@ -7,20 +7,6 @@ export const AppRoute = ({ children, ...rest }) => {
   const { user } = useAuth();
 
   return (
-    <Route
-      {...rest}
-      render={({ location }) =>
-        !user ? (
-          <Redirect
-            to={{
-              pathname: '/login',
-              state: { from: location }
-            }}
-          />
-        ) : (
-          children
-        )
-      }
-    />
+    <Route {...rest} render={() => (!user ? <Redirect to="login" /> : children)} />
   );
 };

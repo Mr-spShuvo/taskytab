@@ -31,9 +31,6 @@ export const App = () => {
                 <AppRoute exact path="/">
                   <Home />
                 </AppRoute>
-                <AppRoute path="/inbox">
-                  <h3>Inbox</h3>
-                </AppRoute>
                 <Route path="/login">
                   <AuthPage />
                 </Route>

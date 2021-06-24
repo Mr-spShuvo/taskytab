@@ -1,18 +1,26 @@
-/* eslint-disable jsx-a11y/no-noninteractive-element-interactions */
-/* eslint-disable jsx-a11y/click-events-have-key-events */
-import React from 'react';
-import { MdLocalOffer, MdEvent, MdMoreVert } from 'react-icons/md';
+import React, { useState } from 'react';
+import { MdLocalOffer, MdEvent, MdMoreVert, MdClear } from 'react-icons/md';
 import { BiCircle, BiCheckCircle } from 'react-icons/bi';
 import dayjs from 'dayjs';
 
+import { db } from '../firebase';
+import { Popup } from './Popup';
+
 export const Task = ({ task }) => {
+  const [showPopup, setShowPopup] = useState(false);
+
   const { id, title, description, tabName, archived, date } = task;
   let taskDate;
   if (date) taskDate = dayjs(date.toDate()).format('MMM DD, YYYY');
+
+  const handleArchived = () => {
+    db.collection('tasks').doc(id).update({ archived: !archived });
+  };
+
   return (
-    <li className="tasks__item" key={id} onClick={() => {}}>
+    <li className="tasks__item">
       <div className="tasks__item-left">
-        <button className="tasks__checkbox">
+        <button className="tasks__checkbox" onClick={handleArchived}>
           {archived ? <BiCheckCircle /> : <BiCircle />}
         </button>
         <div className="tasks__content">
@@ -33,9 +41,20 @@ export const Task = ({ task }) => {
             {taskDate}
           </span>
         )}
-        <span>
-          <MdMoreVert size={18} />
-        </span>
+        {!showPopup ? (
+          <button
+            onClick={() => setShowPopup(true)}
+            // style={{ pointerEvents: showPopup ? 'none' : 'all' }}
+          >
+            <MdMoreVert size={18} />
+          </button>
+        ) : (
+          <button>
+            <MdClear size={18} />
+          </button>
+        )}
+
+        {showPopup && <Popup handleOutsideClick={() => setShowPopup(false)} />}
       </div>
     </li>
   );
