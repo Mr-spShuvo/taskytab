@@ -33,7 +33,7 @@ export const Tab = ({ tab }) => {
     <li className="sidebar__item">
       {/* eslint-disable-next-line */}
       <div
-        className={`sidebar__link ${selectedTab.id === id && 'active'}`}
+        className={`sidebar__link ${selectedTab?.id === id && 'active'}`}
         onClick={() => handleSelectTab(tab)}
       >
         <span className="sidebar__icon">

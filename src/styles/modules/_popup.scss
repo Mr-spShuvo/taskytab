@@ -29,6 +29,14 @@
       align-items: center;
       font-weight: var(--font-medium);
       color: var(--color-text);
+
+      & > svg {
+        color: var(--color-main);
+      }
+
+      & > span {
+        margin-left: 1.5rem;
+      }
     }
   }
 }

@@ -1,14 +1,16 @@
 import React, { useContext, useState, useEffect } from 'react';
 import { HiChevronDown, HiChevronRight } from 'react-icons/hi';
-import { MdAdd, MdMoreHoriz } from 'react-icons/md';
+import { MdAdd, MdMoreHoriz, MdClear } from 'react-icons/md';
 
 import { ARCHIVED_TAB } from '../utils';
 import { ModalAddTask } from './ModalAddTask';
 import { SelectedTabContext } from '../contexts';
 import { Task } from '../common';
 import { useTasks } from '../hooks';
+import { Popup } from '../common/Popup';
 
 export const Tasks = () => {
+  const [showPopup, setShowPopup] = useState(false);
   const [isModalOpen, setModalOpen] = useState(false);
   const [showArchivedTasks, setShowArchivedTasks] = useState(false);
   const [selectedTab] = useContext(SelectedTabContext);
@@ -28,6 +30,8 @@ export const Tasks = () => {
     setModalOpen(true);
   };
 
+   
+
   return (
     <div className="tasks" data-testid="tasks">
       <div className="tasks__top">
@@ -35,14 +39,27 @@ export const Tasks = () => {
           {selectedTab?.name}
         </h2>
         {selectedTab?.id !== ARCHIVED_TAB.id && (
-          <div className="tasks__top-actions">
+          <div className="tasks__top-actions" style={{ position: 'relative' }}>
             <button className="btn btn--neutral btn--round" onClick={handleAddTask}>
               <MdAdd /> Add Task
             </button>
             <ModalAddTask state={[isModalOpen, setModalOpen]} />
-            <button className="btn">
-              <MdMoreHoriz size={18} />
-            </button>
+            {!showPopup ? (
+              <button onClick={() => setShowPopup(true)} className="btn">
+                <MdMoreHoriz size={18} />
+              </button>
+            ) : (
+              <button className="btn">
+                <MdClear size={18} />
+              </button>
+            )}
+
+            {showPopup && (
+              <Popup
+                style={{ top: '3rem', right: '0px' }}
+                handleOutsideClick={() => setShowPopup(false)}
+              />
+            )}
           </div>
         )}
       </div>

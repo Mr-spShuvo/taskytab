@@ -42,9 +42,8 @@ export const useTasks = () => {
     const unsubscribe = query.onSnapshot(snapshot => {
       // Retrieving list of tasks depend on selected tab
       const tasks = snapshot.docs.map(getDocsWithId);
-      console.log(tasks);
 
-      if (selectedTab.id === ARCHIVED_TAB?.id) return setTasks(tasks);
+      if (selectedTab?.id === ARCHIVED_TAB?.id) return setTasks(tasks);
 
       // Checking Whether the tasks is archived or regular
       const archivedTasks = tasks.filter(task => task.archived === true);
@@ -58,11 +57,11 @@ export const useTasks = () => {
     return () => unsubscribe();
   }, [
     userId,
-    selectedTab.id,
-    TODAY_TAB.id,
-    INBOX_TAB.id,
-    WEEK_TAB.id,
-    ARCHIVED_TAB.id,
+    selectedTab?.id,
+    TODAY_TAB?.id,
+    INBOX_TAB?.id,
+    WEEK_TAB?.id,
+    ARCHIVED_TAB?.id,
     collatedTabs,
     tabs
   ]);

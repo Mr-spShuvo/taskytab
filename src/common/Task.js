@@ -42,10 +42,7 @@ export const Task = ({ task }) => {
           </span>
         )}
         {!showPopup ? (
-          <button
-            onClick={() => setShowPopup(true)}
-            // style={{ pointerEvents: showPopup ? 'none' : 'all' }}
-          >
+          <button onClick={() => setShowPopup(true)}>
             <MdMoreVert size={18} />
           </button>
         ) : (
@@ -54,7 +51,13 @@ export const Task = ({ task }) => {
           </button>
         )}
 
-        {showPopup && <Popup handleOutsideClick={() => setShowPopup(false)} />}
+        {showPopup && (
+          <Popup
+            id={id}
+            collection="tasks"
+            handleOutsideClick={() => setShowPopup(false)}
+          />
+        )}
       </div>
     </li>
   );
