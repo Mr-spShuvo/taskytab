@@ -1,6 +1,7 @@
 .popup {
   position: absolute;
   z-index: 111;
+  box-shadow: 1px 1px 5px rgba(0, 0, 0, 0.05);
 
   &__menu {
     margin-top: 1rem;

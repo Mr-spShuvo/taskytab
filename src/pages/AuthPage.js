@@ -14,7 +14,7 @@ const AuthPage = () => {
   const { user, signInWithGoogle, signInWithGithub } = useContext(AuthContext);
 
   const { state } = useLocation();
-  if (user) return <Redirect to={state.from} />;
+  if (user) return <Redirect to={state?.from} />;
 
   return (
     <div className="landingPage">

@@ -1,7 +1,7 @@
 import React from 'react';
 import { MdDelete, MdEdit } from 'react-icons/md';
 import { db } from '../firebase';
-import { useOutsideClick } from '../hooks/useOutsideClick';
+import { useOutsideClick } from '../hooks';
 
 export const Popup = ({ id, collection, handleOutsideClick, ...rest }) => {
   const ref = React.useRef();

@@ -57,11 +57,11 @@ export const useTasks = () => {
     return () => unsubscribe();
   }, [
     userId,
-    selectedTab?.id,
-    TODAY_TAB?.id,
-    INBOX_TAB?.id,
-    WEEK_TAB?.id,
-    ARCHIVED_TAB?.id,
+    selectedTab.id,
+    TODAY_TAB.id,
+    INBOX_TAB.id,
+    WEEK_TAB.id,
+    ARCHIVED_TAB.id,
     collatedTabs,
     tabs
   ]);

@@ -1,5 +1,4 @@
 .landingPage {
-  width: 100vw;
   min-height: 100vh;
   background-image: url(../../assets/img/pattern.svg);
   padding: 2.5% 10%;
@@ -9,7 +8,6 @@
     border-radius: 1rem;
     padding: 2.5%;
     width: 100%;
-    min-height: 88vh;
     background: var(--color-bg);
     border: 3px solid var(--color-light);
   }
@@ -45,7 +43,6 @@
     margin-bottom: 2rem;
     background: var(--color-white);
     width: 42%;
-    height: 46rem;
     padding: 2% 3%;
     border-radius: 1rem;
     border: 2px solid var(--color-light);
